@@ -46,9 +46,10 @@ Alongside the archive, we're mapping **apprenticeship opportunities** that prese
 | Submit a Modern Case | *Coming soon* |
 | Submit a Modern Law or Policy | *Coming soon* |
 | Submit an Apprenticeship Opportunity | [Submit Apprenticeship Opportunity](https://airtable.com/appbrLESyzc7qVxYM/pag1EnfYj2JYZc6Ia/form) |
+| Volunteer Portal (Airtable interface, collaborators only) | [Open the Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec) |
 | Airtable base (collaborators only) | [Open Access base](https://airtable.com/appbrLESyzc7qVxYM) |
 | Discord | [Join our Discord](https://discord.gg/VeTFfqgMx) |
-| GitHub | [Open Access on GitHub](https://github.com/Open-Access-Africa) |
+| GitHub | [Open Access on GitHub](https://github.com/Open-Access-Africa) · [open-access repository](https://github.com/Open-Access-Africa/open-access) |
 
 ---
 
@@ -97,7 +98,7 @@ No downloads are required. Everything works in a web browser.
 #### Your workflow
 
 1. **Get your assignment.** An admin assigns you a **Research Task** and a batch of about 5 **Research Leads**.
-2. **Read the brief.** Open your task in Airtable → **Research Tasks**. Read the instructions and the linked **Resources**, especially the worked example.
+2. **Read the brief.** Open your task in the [Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec). Read the instructions and the linked **Resources**, especially the worked example.
 3. **Research each lead.** Start from the notes on the lead and the starting source lists.
 4. **Submit.** Use the form for your track (see [Quick links](#quick-links)), with **the same email you signed up with**.
 5. **Tell us.** Post in Discord when you've submitted, and ask for your next batch.
@@ -365,6 +366,7 @@ Developers build the Open Access website: the public **Archive** and **Marketpla
 
 - [ ] Discord
 - [ ] GitHub, with an invite to the org: https://github.com/Open-Access-Africa
+- [ ] Clone the repository: https://github.com/Open-Access-Africa/open-access
 - [ ] Claude Code desktop
 - [ ] Claude desktop
 - [ ] Claude Design desktop
