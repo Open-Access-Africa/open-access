@@ -1,15 +1,15 @@
 # Open Access – Africa
 
-**Open Access** is a public archive that connects past and present harm with the fight for justice. Volunteers research and document four connected tracks:
+**Open Access** is a public archive that maps the laws colonial powers used to legalize extraction, exploitation, cultural suppression and the resulting legal actions taken in modern society to demand redress or monetary compensation for systematic oppression. Volunteers research and document four connected tracks:
 
-| Track | What it documents |
-|---|---|
-| **Colonial Laws** | The legal instruments colonial powers used to legalize extraction, exploitation, and cultural suppression |
-| **Reparations Cases** | What justice has looked like when it was delivered, or refused |
-| **Modern Cases** | Harms happening today, and whether anyone is being held accountable |
-| **Modern Laws and Policies** | Present-day laws and policies, national and international, that enable harm or demand redress |
+| Track                        | What it documents                                                                                         |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Colonial Laws**            | The legal instruments colonial powers used to legalize extraction, exploitation, and cultural suppression |
+| **Reparations Cases**        | What justice has looked like after systematic colonial legislation. Delivered or refused                  |
+| **Modern Cases**             | Harms happening today, and documented accountability                                                      |
+| **Modern Laws and Policies** | Present-day laws and policies, national and international, that either enable harm or demand redress      |
 
-Alongside the archive, we're mapping **apprenticeship opportunities** that preserve craft and heritage knowledge.
+Alongside the archive, we are also mapping apprenticeship networks that preserve vocational careers and heritage knowledge. But this is an on-the-ground activity involving interviews, translation, and local input of respective communities. Message in Discord if you are interested in supporting.
 
 > [!NOTE]
 > **Where things live**
@@ -38,18 +38,18 @@ Alongside the archive, we're mapping **apprenticeship opportunities** that prese
 
 ## Quick links
 
-| What | Link |
-|---|---|
-| Volunteer sign-up | [Volunteer with OA](https://airtable.com/appbrLESyzc7qVxYM/pagrn5dZfLdrbW7z0/form) |
-| Submit a Reparations Case | [Submit Reparation Case](https://airtable.com/appbrLESyzc7qVxYM/pagoQh4zMFLiJx5M4/form) |
-| Submit a Colonial Law | [Submit Colonial Law](https://airtable.com/appbrLESyzc7qVxYM/pagCpMqWGuXpRi4vh/form) |
-| Submit a Modern Case | *Coming soon* |
-| Submit a Modern Law or Policy | *Coming soon* |
-| Submit an Apprenticeship Opportunity | [Submit Apprenticeship Opportunity](https://airtable.com/appbrLESyzc7qVxYM/pag1EnfYj2JYZc6Ia/form) |
-| Volunteer Portal (Airtable interface, collaborators only) | [Open the Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec) |
-| Airtable base (collaborators only) | [Open Access base](https://airtable.com/appbrLESyzc7qVxYM) |
-| Discord | [Join our Discord](https://discord.gg/VeTFfqgMx) |
-| GitHub | [Open Access on GitHub](https://github.com/Open-Access-Africa) · [open-access repository](https://github.com/Open-Access-Africa/open-access) |
+| What                                                      | Link                                                                                                                                         |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Volunteer sign-up                                         | [Volunteer with OA](https://airtable.com/appbrLESyzc7qVxYM/pagrn5dZfLdrbW7z0/form)                                                           |
+| Submit a Reparations Case                                 | [Submit Reparation Case](https://airtable.com/appbrLESyzc7qVxYM/pagoQh4zMFLiJx5M4/form)                                                      |
+| Submit a Colonial Law                                     | [Submit Colonial Law](https://airtable.com/appbrLESyzc7qVxYM/pagCpMqWGuXpRi4vh/form)                                                         |
+| Submit a Modern Case                                      | [Submit Modern Case](https://airtable.com/appbrLESyzc7qVxYM/pagMGweDSRmCyxV4s/form)                                                          |
+| Submit a Modern Law or Policy                             | [Submit Modern Law or Policy](https://airtable.com/appbrLESyzc7qVxYM/pagbE0K9fYNlhkSEW/form)                                                 |
+| Submit an Apprenticeship Opportunity                      | [Submit Apprenticeship Opportunity](https://airtable.com/appbrLESyzc7qVxYM/pag1EnfYj2JYZc6Ia/form)                                           |
+| Volunteer Portal (Airtable interface, collaborators only) | [Open the Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec)                                                        |
+| Airtable base (collaborators only)                        | [Open Access base](https://airtable.com/appbrLESyzc7qVxYM)                                                                                   |
+| Discord (valid until October 15, 2026)                    | [Join our Discord](https://discord.gg/VeTFfqgMx)                                                                                             |
+| GitHub                                                    | [Open Access on GitHub](https://github.com/Open-Access-Africa) · [open-access repository](https://github.com/Open-Access-Africa/open-access) |
 
 ---
 
@@ -71,46 +71,57 @@ Everyone sets up these:
 
 ## Roles
 
-| Role | What you do | You need |
-|---|---|---|
-| 🔎 [Researcher](#researcher) | Research laws and cases from assigned leads, then submit them through the forms | Discord, Airtable |
-| ⚖️ [Professional](#professional) | Research like a researcher, and bring expertise (e.g. law) to check accuracy | Discord, Airtable |
-| ✅ [QA Reviewer](#qa-reviewer) | Check submissions for accuracy, sources, and completeness before they're published | Discord, Airtable |
-| 📝 [Data Entry](#data-entry) | Build the Apprenticeship Marketplace by collecting listings from organizations | Discord, Airtable |
-| 🛠️ [Admin](#admin) | Approve volunteers, assign tasks and leads, maintain Airtable and this guide | Discord, Airtable, Obsidian |
-| 💻 [Developer](#developer) | Build the Open Access website | Discord, GitHub, Claude Code, Obsidian |
+| Role                             | What you do                                                                                     | You need                                                                                  |
+| -------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| 🔎 [Researcher](#researcher)     | Research laws and cases from assigned leads, then submit them through the forms                 | Discord, Airtable, Obsidian (optional)                                                    |
+| ⚖️ [Professional](#professional) | Research like a researcher, and bring expertise to Legal Mechanism and Reparation Status fields | Discord, Airtable, Obsidian (optional)                                                    |
+| ✅ [QA Reviewer](#qa-reviewer)    | Check submissions for accuracy, sources, and completeness before they're published              | Discord, Airtable (browser or desktop)                                                    |
+| 📝 [Data Entry](#data-entry)     | Build the Apprenticeship Marketplace by collecting listings from organizations                  | Discord, Airtable                                                                         |
+| 🛠️ [Admin](#admin)              | Approve volunteers, assign tasks and leads, maintain Airtable and this guide                    | Discord, Airtable, Obsidian Desktop with community plugins                                |
+| 💻 [Developer](#developer)       | Build the Open Access website                                                                   | Discord, GitHub, Claude Code, Obsidian Desktop, Zapier (temporary), Airtable (temporary), |
 
 ---
 
 ### Researcher
 
-Researchers document the history and present at the heart of Open Access: colonial laws, reparations cases, modern cases, and modern laws and policies.
+Researchers document colonial laws, reparations cases, modern cases, and modern laws and policies.
 
 #### Setup
 
 - [ ] Signed up with the [Volunteer with OA](https://airtable.com/appbrLESyzc7qVxYM/pagrn5dZfLdrbW7z0/form) form
 - [ ] Joined Discord
-- [ ] Airtable account (if a seat is available; otherwise you can work entirely from the forms)
-- [ ] Optional: Obsidian, to read this guide offline
+- [ ] Airtable account (if a seat is available; otherwise you can work entirely from the forms or [Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec). )
+- [ ] Optional: Obsidian, to read this guide offline and organize thoughts (Use the Relay plugin for collaborating with team)
 
 No downloads are required. Everything works in a web browser.
 
 #### Your workflow
 
-1. **Get your assignment.** An admin assigns you a **Research Task** and a batch of about 5 **Research Leads**.
+1. **Get assigned.** An admin assigns you a **Research Task** and a batch of 5 **Research Leads**.
 2. **Read the brief.** Open your task in the [Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec). Read the instructions and the linked **Resources**, especially the worked example.
 3. **Research each lead.** Start from the notes on the lead and the starting source lists.
 4. **Submit.** Use the form for your track (see [Quick links](#quick-links)), with **the same email you signed up with**.
 5. **Tell us.** Post in Discord when you've submitted, and ask for your next batch.
 
+> [!NOTE]
+> **Email for submissions**
+> Within the Airtable form, an email is required. You may create a real dummy email, or use a fake email. Just make sure it is the same for each of your submissions.
+
 #### Where to find things in Airtable
 
-| Table | What's there |
-|---|---|
-| Research Tasks | Your task brief, instructions, and deadline |
-| Research Leads | The specific laws, cases, or speeches to research |
-| Resources | Guides, worked examples, and starting source lists |
-
+| Table          | What's there                                       |
+| -------------- | -------------------------------------------------- |
+| Research Tasks | Your task brief, instructions, and deadline        |
+| Research Leads | The specific laws, cases, or speeches to research  |
+| Resources      | Guides, worked examples, and starting source lists |
+#### What the statuses mean
+| Task Status | Meaning                                    |
+| ----------- | ------------------------------------------ |
+| Unassigned  | Nobody is working on it yet                |
+| Assigned    | A volunteer has it                         |
+| Submitted   | Entry received, waiting for review         |
+| In Review   | QA reviewer is checking it                 |
+| Published   | Live on the public archive (soon website!) |
 #### Quality standards
 
 Every entry needs:
@@ -123,11 +134,17 @@ Every entry needs:
 - [ ] **Every required field** completed
 - [ ] **Your signup email** in the email field
 
-**Sources without a link.** Books, archive files, and gazettes often have no URL. Put the full citation in **Source Text**: author, title, publisher, year, page or archive reference.
+**Sources without a link.** Books, archive files, and gazettes often have no URL. Put the full citation in **Source Text**: author, title, publisher, year, page or archive reference. This is a required field so if you only have one link and no text, you can prioritize the **Source Text** field.
 
 **Speeches.** Speeches are recorded as **sources on the related law**, not as separate entries. Include the speaker, date, venue, and where the transcript can be found.
 
 **Quotes.** Quote only what you've verified in the original source. If you can't confirm the exact wording, paraphrase and cite.
+
+Each track also has its own outcome status, separate from our research progress:
+
+- **Reparations Status** (Reparations Cases): Proposed, Ongoing, Partially implemented, Completed, Rejected
+- **Case Status** (Modern Cases): the state of the accountability effort, e.g. Filed, Ongoing, Settled, Dismissed
+- **Current Status** (Modern Laws and Policies): Proposed, In force, Amended, Challenged, Repealed or revoked
 
 #### FAQ
 
@@ -135,16 +152,16 @@ Every entry needs:
 You probably used a different email from your sign-up, or your account isn't approved yet. Tell an admin in Discord.
 
 **I found a law or case that isn't on my lead list.**
-Great. Post it in Discord so an admin can add it as a lead, then research it.
+Great. Post it in Discord so an admin can add it as a lead, assign it to you, then research it.
 
 **I'm stuck.**
-Ask in Discord. Someone has probably hit the same problem.
+Ask in Discord. Someone probably has the answer or message me.
 
 ---
 
 ### Professional
 
-Professionals bring specialist expertise, such as law, architecture, or archival work. You research like a [Researcher](#researcher), and your expertise helps make the archive accurate and credible.
+Professionals bring specialization, such as law, architecture, or archival work. You research like a [Researcher](#researcher), and your expertise helps make the archive credible.
 
 #### Setup
 
@@ -158,16 +175,16 @@ Professionals bring specialist expertise, such as law, architecture, or archival
 
 **2. Advise on accuracy.** Where your expertise matters most:
 
-| Field | What to check |
-|---|---|
-| **Legal Mechanism** (Reparations Cases) | Was it legislation, a court ruling, a settlement, a treaty? Is the classification right? |
-| **Reparations Status** | Is the outcome described correctly: Proposed, Ongoing, Partially implemented, Completed, or Rejected? |
-| **What It Legalized** (Colonial Laws) | Does the description reflect the law's actual text and effect? |
-| **Mechanism of Harm** | Is the link between the law and the harm well documented? |
-| **Sources** | Are primary legal sources (statutes, gazettes, judgments) cited where possible? |
+| Field                                               | What to check                                                                                                         |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Legal Mechanism for Redress** (Reparations Cases) | By what legal route was the remedy delivered? *For further thinking: does the classification represent the outcomes?* |
+| **Reparations Status**                              | Is the outcome described correctly: Proposed, Ongoing, Partially implemented, Completed, or Rejected?                 |
+| **Instrument Type** and **Summary** (Colonial Laws) | Is the legal form right and does the summary reflect the law's actual effect?                                         |
+| **Mechanism of Harm** (all research tracks)         | Do the tags match the harm described, and does the write-up support them?                                             |
+| **Sources**                                         | Are primary legal sources (statutes, gazettes, judgments) cited where possible?                                       |
 
 **3. Help the team.**
-- Answer legal and technical questions from researchers in Discord
+- Answer legal or technical questions from researchers in Discord (optional)
 - Suggest new leads: laws, cases, or precedents we've missed
 - Flag entries that make legal claims the sources don't support
 
@@ -282,11 +299,11 @@ Data entry volunteers build the **Apprenticeship Marketplace**: listings for app
 **Contact**
 - [ ] Contact person, email, and phone
 
-#### Outreach script
+#### Outreach script (English)
 
-> Hello, my name is [your name] and I volunteer with **Open Access**, a project building a free public directory of apprenticeships that preserve craft and heritage knowledge.
+> Hello, my name is [your name] and I volunteer with **Open Access**, a project building a public directory of apprenticeships that preserve craft and heritage knowledge.
 >
-> We'd love to include [organization]'s apprenticeship in our marketplace so more people can find it. Could you share a few details, such as what the apprenticeship covers, how long it lasts, and how people can apply?
+> We want to include [organization]'s apprenticeship in our marketplace so more people can find it. Could you share a few details, such as what the apprenticeship covers, how long it lasts, and how people can apply?
 >
 > Listing is free, and we'll share the entry with you before it goes live.
 
@@ -395,7 +412,7 @@ Developers build the Open Access website: the public **Archive** and **Marketpla
 - **Volunteer Portal** (`/volunteers`): Research Tasks, Research Leads, and Resources, with Submit buttons
 - **Week 5 upgrade:** built-in submission forms that save to Airtable, fill in the volunteer automatically from their login, and post to Discord
 
-#### Rules that matter
+#### Rules
 
 **Only show published records publicly.** The public site shows only records where **Task Status** is **Published**. Filter on the server, never in the browser.
 
@@ -427,37 +444,6 @@ Developers build the Open Access website: the public **Archive** and **Marketpla
 | 8 | Soft launch with volunteers and partners |
 
 ---
-
-## How research works
-
-1. **Get assigned.** An admin assigns you a task and a batch of leads.
-2. **Research.** Use the task instructions, the notes on each lead, and the Resources guides. Every entry needs **2+ credible sources**.
-3. **Submit.** Use the right form and **the same email you signed up with**.
-4. **Review.** A QA reviewer checks your entry.
-5. **Publish.** Approved entries appear in the public archive (soon on our website!).
-
-### What the statuses mean
-
-| Task Status | Meaning |
-|---|---|
-| Unassigned | Nobody is working on it yet |
-| Assigned | A volunteer has it |
-| Submitted | Entry received, waiting for review |
-| In Review | A QA reviewer is checking it |
-| Published | Live on the public archive |
-
-Each track also has its own outcome status, separate from our research progress:
-
-- **Reparations Status** (Reparations Cases): Proposed, Ongoing, Partially implemented, Completed, Rejected
-- **Case Status** (Modern Cases): the state of the accountability effort, e.g. Filed, Ongoing, Settled, Dismissed
-- **Current Status** (Modern Laws and Policies): Proposed, In force, Amended, Challenged, Repealed or revoked
-
-### Speeches
-
-Speeches are recorded as **sources on a law**, not as separate entries. Include the speaker, date, venue, and citation in the law's **Source Text** field.
-
----
-
 ## Obsidian setup
 
 For admins and developers. Install these **Community Plugins** (Settings → Community plugins → Browse):
