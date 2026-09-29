@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/fraunces";
+import "@fontsource/public-sans/600.css";
+import "@fontsource/public-sans/700.css";
+import "@fontsource/public-sans/800.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/600.css";
@@ -9,7 +13,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: {
-    default: "Open Access – Mapping colonial law and the fight for redress",
+    default: "Open Access – An archive of colonial law and reparations",
     template: "%s · Open Access",
   },
   description:
