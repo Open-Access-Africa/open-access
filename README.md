@@ -103,6 +103,10 @@ No downloads are required. Everything works in a web browser.
 4. **Submit.** Use the form for your track (see [Quick links](#quick-links)), with **the same email you signed up with**.
 5. **Tell us.** Post in Discord when you've submitted, and ask for your next batch.
 
+> [!TIP]
+> **Want a lead?**
+> Find a lead with **Lead Status** set to **Open** in the [Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec), then post its name in Discord. An admin will mark it **Claimed** for you. Only research a lead once it shows as claimed by you, so two people don't work on the same one.
+
 > [!NOTE]
 > **Email for submissions**
 > Within the Airtable form, an email is required. You may create a real dummy email, or use a fake email. Just make sure it is the same for each of your submissions.
@@ -336,7 +340,7 @@ Admins keep Open Access running: approving volunteers, assigning work, maintaini
 
 **2. Assign work.**
 - **Research Tasks:** add volunteers to **Assigned To**
-- **Research Leads:** set **Claimed By** and **Lead Status** to **Claimed**
+- **Research Leads:** set **Claimed By** and **Lead Status** to **Claimed**, including when a volunteer requests an Open lead in Discord
 - Add new leads when volunteers suggest them
 
 **3. Watch the queues.**
