@@ -101,8 +101,9 @@ No downloads are required. Everything works in a web browser.
 1. **Get assigned.** An admin assigns you a **Research Task** and a batch of 5 **Research Leads**.
 2. **Read the brief.** Open your task in the [Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec). Read the instructions and the linked **Resources**, especially the worked example.
 3. **Research each lead.** Start from the notes on the lead and the starting source lists.
-4. **Submit.** Use the form for your track (see [Quick links](#quick-links)), with **the same email you signed up with**.
-5. **Tell us.** Post in Discord when you've submitted, and ask for your next batch.
+4. **Add the location.** Fill in **Country Code**, and **Latitude** / **Longitude** when the record is about a specific place. See [Adding locations (GIS)](#adding-locations-gis).
+5. **Submit.** Use the form for your track (see [Quick links](#quick-links)), with **the same email you signed up with**.
+6. **Tell us.** Post in Discord when you've submitted, and ask for your next batch.
 
 > [!TIP]
 > **Want a lead?**
@@ -137,6 +138,7 @@ Every entry needs:
   - Reparations Cases: a **150+ word Case Summary**
   - Modern Cases and Modern Laws and Policies: a 2–3 sentence **Summary** and a **150+ word Analysis**
 - [ ] **Every required field** completed
+- [ ] **Country Code**, plus **Latitude** and **Longitude** if the record is tied to a specific place (see [Adding locations (GIS)](#adding-locations-gis))
 - [ ] **Your signup email** in the email field
 
 **Sources without a link.** Books, archive files, and gazettes often have no URL. Put the full citation in **Source Text**: author, title, publisher, year, page or archive reference. This is a required field so if you only have one link and no text, you can prioritize the **Source Text** field.
@@ -232,6 +234,12 @@ In each research table, look for records where **Task Status** is **Submitted**.
 - [ ] No unverified quotes: quoted wording matches the original source
 - [ ] Neutral, factual tone
 
+**Location (every research entry)**
+- [ ] **Country Code** is filled in and uses the right two-letter code (or `INT` for international instruments)
+- [ ] If **Latitude** and **Longitude** are filled in, paste them into Google Maps as `latitude, longitude` and confirm the pin lands on the place described in the entry
+- [ ] Latitude and longitude aren't swapped, and places south of the equator or west of Greenwich have a minus sign
+- [ ] If there's no single place (for example, a national law), Latitude and Longitude are left **blank** rather than guessed
+
 **Colonial Laws**
 - [ ] **Summary** is 2–3 sentences
 - [ ] **Analysis** is 200+ words and explains the **Mechanism of Harm**
@@ -264,7 +272,7 @@ In each research table, look for records where **Task Status** is **Submitted**.
 
 ### Data Entry
 
-Data entry volunteers build the **Apprenticeship Marketplace**: listings for apprenticeships that preserve craft and heritage knowledge, from weaving to repair trades.
+Data entry volunteers build the **Apprenticeship Marketplace**: listings for apprenticeships that preserve craft and heritage knowledge, from weaving to repair trades. They also add and check **location data (GIS)** so research entries appear on the website's maps.
 
 #### Setup
 
@@ -303,6 +311,39 @@ Data entry volunteers build the **Apprenticeship Marketplace**: listings for app
 
 **Contact**
 - [ ] Contact person, email, and phone
+
+#### Adding locations (GIS)
+
+Every research entry needs a location so it can appear as a point on the website's globe and maps. Researchers add it when they submit; Data Entry volunteers fill in records that are missing it and fix ones QA sends back.
+
+**The fields** (in Colonial Laws, Reparations Cases, Modern Cases, and Modern Laws and Policies)
+
+| Field | Required? | Format | Example |
+|---|---|---|---|
+| **Country Code** | Yes | Two-letter ISO code; separate several with commas; `INT` for international instruments | `ZA` · `KE, GB` · `INT` |
+| **Latitude** | Only for a specific place | Decimal degrees, up to 5 decimal places; **south is negative** | `-33.93000` |
+| **Longitude** | Only for a specific place | Decimal degrees, up to 5 decimal places; **west is negative** | `18.43000` |
+
+**Steps**
+1. **Choose the place.** Use the most specific place the entry is about: where the land was taken, the claim was made, or the harm happened (e.g. District Six, not "South Africa"). If the entry is a national law with no single place, fill in **Country Code** only and leave Latitude and Longitude blank. Don't guess.
+2. **Find the coordinates.** In Google Maps, right-click the place and click the numbers at the top of the menu to copy them. They copy as `latitude, longitude`. Put the first number in **Latitude** and the second in **Longitude**.
+3. **Check the point.** Paste `latitude, longitude` back into the Google Maps search bar, or into [geojson.io](https://geojson.io), and confirm the pin lands in the right place.
+4. **Add the country code.** Look up the two-letter code in the [ISO 3166 country code list](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) (Ghana `GH`, Kenya `KE`, South Africa `ZA`, United Kingdom `GB`).
+5. **Note historical places.** If the place name has changed or no longer exists, use its present-day location and mention the historical name in the write-up.
+
+**Tools**
+
+| Tool | Use it for |
+|---|---|
+| [Google Maps](https://maps.google.com) | Right-click → copy coordinates; checking a point |
+| [OpenStreetMap](https://www.openstreetmap.org) | Alternative map; right-click → **Show address** to see coordinates |
+| [GeoNames](https://www.geonames.org) | Looking up towns, regions and historical place names |
+| Wikipedia | Most places list coordinates at the top right of the article |
+| [geojson.io](https://geojson.io) | Pasting several points to check them on a map at once |
+| [ISO 3166 code list](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) | Two-letter country codes |
+
+> [!WARNING]
+> The most common mistakes are **swapping** latitude and longitude, and **dropping the minus sign** for places south of the equator or west of Greenwich (South Africa's latitudes are negative). Always check the point on a map.
 
 #### Outreach script (English)
 
@@ -346,10 +387,16 @@ Admins keep Open Access running: approving volunteers, assigning work, maintaini
 
 **3. Watch the queues.**
 - New submissions (**Task Status** is **Submitted**) are picked up by [QA Reviewers](#qa-reviewer)
+- Published records with no **Country Code**: they won't appear on the website's maps, so assign them to [Data Entry](#data-entry) to add locations
 - Records with **Email Not Matched** ticked: confirm who submitted them
 - Volunteers with **Status** set to **Onboarding** are waiting for approval
 
-**4. Manage Airtable seats.**
+**4. Keep location data ready for GIS.**
+- Every submission form includes **Country Code** (required), **Latitude** and **Longitude** (optional)
+- Before a record is published, confirm its location fields were checked in QA
+- Keep a **Missing location** view in each research table (filter: Task Status is Published and Country Code is empty)
+
+**5. Manage Airtable seats.**
 - The free plan allows **5 collaborators**, including the owner
 - When someone leaves, remove their access to free the seat
 - Volunteers without a seat can still work entirely through the forms
@@ -359,6 +406,7 @@ Admins keep Open Access running: approving volunteers, assigning work, maintaini
 - [ ] **Monday:** review sign-ups waiting in Onboarding; approve or schedule calls
 - [ ] **Monday:** check each volunteer has enough leads for the week
 - [ ] **Midweek:** clear the Email Not Matched flags
+- [ ] **Midweek:** check the **Missing location** views and assign any records to Data Entry
 - [ ] **Friday:** celebrate published entries in Discord
 - [ ] **Monthly:** check in with each volunteer; review this guide for outdated info
 
@@ -406,12 +454,19 @@ Developers build the Open Access website: the public **Archive** and **Marketpla
 | Login | Supabase Auth (invite-only) |
 | Hosting | Vercel |
 | Notifications | Discord webhook (from the web app, week 5) |
+| Maps (GIS) | **globe.gl** for the home-page globe; **MapLibre GL JS** + **deck.gl** for case-file maps; tiles from **Protomaps** or **MapTiler** |
 
 #### What we're building
 
 **Public**
 - **Archive** (`/archive`): search and filter published research across all four tracks; card, timeline, map, and table views; detail pages; CSV/PDF export
 - **Marketplace** (`/marketplace`): published Apprenticeship Opportunities with filters
+
+**Maps (GIS integration)**
+- **Home page globe:** an interactive 3D teal point globe; each published entry is a point
+- **Case file and law pages:** dark navy maps with the entry's place and linked records as light points
+- **Archive map view:** filter published entries on a map
+- Locations come from each record's **Country Code**, **Latitude** and **Longitude** fields. Use exact coordinates when present; otherwise fall back to the country's centre point from the Country Code.
 
 **Private (login required)**
 - **Volunteer Portal** (`/volunteers`): Research Tasks, Research Leads, and Resources, with Submit buttons
@@ -429,6 +484,8 @@ Developers build the Open Access website: the public **Archive** and **Marketpla
 **Fetch data on the server.** Call Airtable only from server code (server components, route handlers, server actions). The token must never reach the browser.
 
 **Protect volunteer data.** Never expose the **Volunteers** table, emails, or linked people fields on public pages.
+
+**Maps show published records only.** The same Published-only rule applies to every map layer. Build map data (GeoJSON) on the server, and keep any map-tile API key in environment variables.
 
 #### Working with Claude Code
 
