@@ -48,7 +48,7 @@ Alongside the archive, we are also mapping apprenticeship networks that preserve
 | Submit an Apprenticeship Opportunity                      | [Submit Apprenticeship Opportunity](https://airtable.com/appbrLESyzc7qVxYM/pag1EnfYj2JYZc6Ia/form)                                           |
 | Volunteer Portal (Airtable interface, collaborators only) | [Open the Volunteer Portal](https://airtable.com/appbrLESyzc7qVxYM/pagz70y0jPUvSW4Ec)                                                        |
 | Airtable base (collaborators only)                        | [Open Access base](https://airtable.com/appbrLESyzc7qVxYM)                                                                                   |
-| Discord (valid until October 15, 2026)                    | [Join our Discord](https://discord.gg/VeTFfqgMx)                                                                                             |
+| Discord                                                   | Invite link is in your welcome email, or ask an admin                                                                                        |
 | GitHub                                                    | [Open Access on GitHub](https://github.com/Open-Access-Africa) · [open-access repository](https://github.com/Open-Access-Africa/open-access) |
 
 ---
@@ -58,7 +58,7 @@ Alongside the archive, we are also mapping apprenticeship networks that preserve
 Everyone sets up these:
 
 1. **Sign up to volunteer** using the [Volunteer with OA](https://airtable.com/appbrLESyzc7qVxYM/pagrn5dZfLdrbW7z0/form) form.
-2. **Join Discord** and introduce yourself in the `#open-access` channel: [Join our Discord](https://discord.gg/VeTFfqgMx)
+2. **Join Discord** using the invite link in your welcome email (or ask an admin), and introduce yourself in the `#open-access` channel.
 3. **Create an Airtable account** using our referral link: https://airtable.com/invite/r/xosA6t4V
    - Use the **same email** you used on the volunteer form. Your submissions are credited to you by matching that email.
    - Signing up through this link earns credits toward upgrading our workspace, which saves the project money. Once you've signed up, you'll be added as a collaborator on the Open Access base.
