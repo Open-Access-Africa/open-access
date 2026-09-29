@@ -1,21 +1,35 @@
 @import "tailwindcss";
 
+/*
+  Light theme (see the "D · Home" artboard in the design canvas).
+  Token names are kept from v1 so existing pages restyle automatically:
+  - gold      → light teal accent (buttons, badges)
+  - gold-deep → dark teal (small labels, text accents)
+*/
 @theme {
-  --color-paper: #faf8f3;
-  --color-ink: #16233f;
-  --color-ink-soft: #3a4460;
-  --color-muted: #4a5468;
-  --color-line: #e3ded2;
-  --color-gold: #d9a02b;
-  --color-gold-deep: #8a6a1e;
-  --font-display: "Fraunces Variable", Georgia, serif;
+  --color-paper: #f4f7f8;
+  --color-ink: #0e1b2c;
+  --color-ink-soft: #3d4b5c;
+  --color-muted: #4e5b6a;
+  --color-line: #dce5e8;
+  --color-gold: #7fd3cf;
+  --color-gold-deep: #156e72;
+  --color-teal: #1e7f83;
+  --color-navy: #0e1b2c;
+  --font-display: "Public Sans", system-ui, sans-serif;
   --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
+}
+
+/* Display headings are always set in capitals. */
+.font-display {
+  text-transform: uppercase;
 }
 
 h1,
@@ -29,6 +43,6 @@ p {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-gold);
+  outline: 3px solid var(--color-teal);
   outline-offset: 2px;
 }

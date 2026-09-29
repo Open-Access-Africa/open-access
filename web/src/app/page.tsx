@@ -1,109 +1,136 @@
+import Image from "next/image";
 import Link from "next/link";
-import { building, links, roles, tracks } from "@/lib/site";
+import { lawAndRecord, links, roles, tracks, trackPrompts } from "@/lib/site";
 
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-24">
-        <p className="mb-5 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-          <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-gold" />
-          A public archive of colonial law and redress
+      {/* Title area */}
+      <section className="mx-auto flex max-w-7xl flex-col items-center gap-7 px-5 pb-14 pt-16 text-center sm:px-8 sm:pt-20 lg:px-14">
+        <p className="font-mono text-xs tracking-[0.3em] text-gold-deep uppercase sm:text-sm">
+          Archive / Colonial Law / Reparations
         </p>
-        <h1 className="max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-7xl">
-          Map the laws. Trace the redress.
+        <h1 className="font-display text-5xl leading-none font-extrabold tracking-tight sm:text-7xl lg:text-[80px]">
+          <span className="block">Counter mapping strategies</span>
+          <span className="block text-teal">Trace the laws</span>
         </h1>
-        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft">
-          Open Access documents the laws colonial powers used to legalize extraction,
-          exploitation and cultural suppression, and the legal actions taken since to
-          demand redress. Free to read, built by volunteers.
-        </p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <a
-            href={links.volunteerForm}
-            className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 font-semibold text-white hover:bg-ink/90"
-          >
-            Volunteer with us
-          </a>
-          <Link
-            href="/about"
-            className="inline-flex min-h-12 items-center rounded-full border border-ink/25 px-6 font-semibold text-ink hover:border-ink"
-          >
-            How it works
-          </Link>
+        <ul className="flex flex-wrap justify-center gap-3">
+          {tracks.map((t) => (
+            <li key={t.name}>
+              <Link
+                href="/archive"
+                className="inline-flex min-h-11 items-center border border-[#b9cdd2] bg-white px-4 font-mono text-xs tracking-[0.2em] uppercase hover:border-ink"
+              >
+                {t.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Globe (static image for now; the interactive globe replaces it in step 3) */}
+      <section
+        aria-labelledby="globe-heading"
+        className="bg-[radial-gradient(ellipse_at_40%_50%,#e3f1f2_0%,#edf4f5_45%,#f4f7f8_75%)]"
+      >
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_380px] lg:px-14 lg:py-16">
+          <Image
+            src="/globe-points.webp"
+            priority
+            alt="A globe drawn as a cloud of teal points, centred on Africa, with dark markers where archive entries are located."
+            width={960}
+            height={960}
+            className="mx-auto w-full max-w-[860px]"
+          />
+          <div className="flex flex-col items-center gap-4 rounded-2xl border border-line bg-white/90 p-7 text-center shadow-[0_12px_40px_rgba(14,27,44,0.10)]">
+            <span aria-hidden className="flex h-13 w-13 items-center justify-center rounded-full bg-[#d5e6e8]">
+              <span className="h-4.5 w-4.5 rounded-full bg-ink" />
+            </span>
+            <h2 id="globe-heading" className="text-2xl font-semibold">
+              Where would you like to start?
+            </h2>
+            <p className="text-[15px] leading-relaxed text-muted">
+              Every point is a law, case or policy in the archive. Start from one of the four tracks.
+            </p>
+            <ul className="mt-1 flex w-full flex-col gap-2.5 text-left">
+              {trackPrompts.map((p) => (
+                <li key={p.track}>
+                  <Link
+                    href="/archive"
+                    className={`flex justify-between gap-3 rounded-2xl border px-4 py-3.5 text-[15px] leading-snug hover:border-ink ${p.tint}`}
+                  >
+                    <span>
+                      <strong className="font-semibold">{p.track}</strong>
+                      <br />
+                      {p.prompt}
+                    </span>
+                    <span aria-hidden>↗</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Four tracks */}
-      <section aria-labelledby="tracks-heading" className="border-t border-line bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <h2 id="tracks-heading" className="font-display text-3xl font-semibold sm:text-4xl">
-            What we document
-          </h2>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            Four connected tracks, so a law from 1900 can be traced to the claims it led to and
-            the harms that continue today.
-          </p>
-          <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {tracks.map((t, i) => (
-              <li key={t.name} className="rounded-2xl border border-line bg-paper p-6">
-                <span className="text-sm font-semibold text-gold-deep">0{i + 1}</span>
-                <h3 className="mt-2 font-display text-xl font-semibold">{t.name}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{t.short}</p>
+      {/* Law & Record */}
+      <section aria-labelledby="record-heading" className="border-t border-line bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-14 lg:py-20">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="space-y-2.5">
+              <p className="font-mono text-xs tracking-[0.3em] text-gold-deep uppercase sm:text-sm">
+                Case file · South Africa
+              </p>
+              <h2 id="record-heading" className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Law &amp; Record
+              </h2>
+            </div>
+            <p className="max-w-md leading-relaxed text-muted">
+              Every entry links forward and back: from the law that caused a harm, to the claims and
+              remedies that followed.
+            </p>
+          </div>
+          <ol className="mt-10 grid gap-6 md:grid-cols-3">
+            {lawAndRecord.map((r, i) => (
+              <li key={r.title} className="flex flex-col gap-3.5 border border-line bg-[#f7fafa] p-7">
+                <p className={`flex justify-between font-mono text-xs tracking-[0.2em] uppercase ${r.color}`}>
+                  <span>0{i + 1} · {r.kind}</span>
+                  <span>{r.year}</span>
+                </p>
+                <h3 className="font-display text-xl leading-tight font-bold tracking-wide">{r.title}</h3>
+                <p className="text-[15px] leading-relaxed text-ink-soft">{r.text}</p>
+                <p className="mt-auto pt-2 font-mono text-xs tracking-[0.14em] text-[#5a6b78] uppercase">{r.footer}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* What we're building */}
-      <section aria-labelledby="building-heading" className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-        <h2 id="building-heading" className="font-display text-3xl font-semibold sm:text-4xl">
-          What we&apos;re building
-        </h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {building.map((b) => (
-            <div key={b.name} className="rounded-2xl border border-line bg-white p-6">
-              <span className="inline-block rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold text-gold-deep">
-                {b.status}
-              </span>
-              <h3 className="mt-4 font-display text-xl font-semibold">{b.name}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{b.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Roles CTA */}
-      <section aria-labelledby="roles-heading" className="bg-ink text-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.1fr_1fr] md:items-center">
-          <div>
-            <h2 id="roles-heading" className="font-display text-3xl font-semibold sm:text-4xl">
-              We&apos;re looking for volunteers
+      {/* Join the investigation */}
+      <section aria-labelledby="join-heading" className="bg-navy text-[#f4f7f8]">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-2 lg:px-14">
+          <div className="flex flex-col items-start gap-5">
+            <p className="font-mono text-xs tracking-[0.3em] text-gold uppercase sm:text-sm">Recruiting · Remote</p>
+            <h2 id="join-heading" className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
+              Join the investigation
             </h2>
-            <p className="mt-4 max-w-xl text-white/85">
-              Remote, in your browser, a few hours a week. No downloads and, for most roles, no
-              experience needed.
+            <p className="max-w-md text-lg leading-relaxed text-[#c5d0d8]">
+              A few hours a week, in your browser. Most roles need no prior experience.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={links.volunteerForm}
-                className="inline-flex min-h-12 items-center rounded-full bg-gold px-6 font-semibold text-ink hover:bg-gold/90"
-              >
-                Sign up to volunteer
-              </a>
-              <Link
-                href="/get-involved"
-                className="inline-flex min-h-12 items-center rounded-full border border-white/40 px-6 font-semibold text-white hover:border-white"
-              >
-                See the roles
-              </Link>
-            </div>
+            <a
+              href={links.volunteerForm}
+              className="mt-2 inline-flex min-h-12 items-center bg-gold px-7 font-display text-sm font-bold tracking-[0.16em] text-ink uppercase hover:bg-gold/90"
+            >
+              Volunteer with us
+            </a>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {roles.map((r) => (
-              <li key={r.name} className="rounded-xl bg-white/5 px-5 py-4 ring-1 ring-white/10">
-                <p className="font-semibold">{r.name}</p>
+          <ul className="border-t border-[#2a3a4e]">
+            {roles.map((r, i) => (
+              <li key={r.name} className="border-b border-[#2a3a4e]">
+                <Link href="/get-involved" className="flex items-center justify-between py-4.5 text-[#f4f7f8] hover:text-gold">
+                  <span className="font-display text-lg font-bold tracking-wider">{r.name}</span>
+                  <span className="font-mono text-xs tracking-[0.2em] text-[#8c9aa8]">ROLE 0{i + 1}</span>
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,24 +1,21 @@
 import Link from "next/link";
-import { links } from "@/lib/site";
+import { GlobeMark } from "@/components/GlobeMark";
 
 const nav = [
-  { href: "/about", label: "About" },
-  { href: "/get-involved", label: "Get involved" },
   { href: "/archive", label: "Archive" },
+  { href: "/about", label: "About" },
 ];
 
 export function SiteHeader() {
   return (
     <header className="border-b border-line bg-paper">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <Link href="/" className="flex items-center gap-2.5 no-underline">
-          <span aria-hidden className="h-3 w-3 rounded-full bg-gold" />
-          <span className="font-display text-xl font-semibold tracking-tight text-ink">
-            Open Access
-          </span>
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-5 sm:px-8 lg:px-14">
+        <Link href="/" className="flex items-center gap-3 text-ink">
+          <GlobeMark className="h-8 w-8" />
+          <span className="font-display text-lg font-extrabold tracking-[0.12em]">Open Access</span>
         </Link>
         <nav aria-label="Main">
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] font-medium">
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-2 font-display text-sm font-semibold tracking-[0.16em] uppercase">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-ink-soft hover:text-ink">
@@ -27,12 +24,12 @@ export function SiteHeader() {
               </li>
             ))}
             <li>
-              <a
-                href={links.volunteerForm}
-                className="inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-white hover:bg-ink/90"
+              <Link
+                href="/get-involved"
+                className="inline-flex min-h-11 items-center border-[1.5px] border-ink px-5 text-ink hover:bg-ink hover:text-white"
               >
-                Volunteer
-              </a>
+                Get involved
+              </Link>
             </li>
           </ul>
         </nav>

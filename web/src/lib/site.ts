@@ -28,6 +28,42 @@ export const tracks = [
   },
 ];
 
+// Starting points shown beside the globe on the home page.
+export const trackPrompts = [
+  { track: "Colonial Laws", prompt: "Which laws took land in Southern Africa?", tint: "bg-[#f1f4e3] border-[#dce3be]" },
+  { track: "Reparations Cases", prompt: "Where has redress been paid or refused?", tint: "bg-[#f9e3ea] border-[#eec5d2]" },
+  { track: "Modern Cases", prompt: "Which harms are happening today?", tint: "bg-[#e7edfb] border-[#c9d5f2]" },
+  { track: "Modern Laws & Policies", prompt: "Which laws demand redress now?", tint: "bg-[#fbf3df] border-[#eeddb2]" },
+];
+
+// "Law & Record" section on the home page: one colonial law and the records that followed it.
+export const lawAndRecord = [
+  {
+    kind: "Colonial Law",
+    year: "1913",
+    title: "Natives Land Act",
+    text: "Restricted Black South Africans to owning land in reserves covering about 7% of the country.",
+    footer: "Land seizure · Racial classification",
+    color: "text-[#156e72]",
+  },
+  {
+    kind: "Reparations Case",
+    year: "1994",
+    title: "Restitution of Land Rights Act",
+    text: "Opened land claims for people dispossessed after 19 June 1913, the day the Natives Land Act took effect.",
+    footer: "Legislation · Land return",
+    color: "text-[#a0405e]",
+  },
+  {
+    kind: "Modern Law",
+    year: "1996",
+    title: "Constitution, Section 25",
+    text: "The property clause that commits the state to land reform and equitable access to land.",
+    footer: "Demands redress · In force",
+    color: "text-[#3456a8]",
+  },
+];
+
 export const roles = [
   {
     name: "Researcher",
