@@ -255,6 +255,7 @@ In each research table, look for records where **Task Status** is **Submitted**.
 - [ ] The organization is real and the contact details look valid
 - [ ] **How to Apply** is clear
 - [ ] Nothing in the listing is misleading about cost, stipend, or duration
+- [ ] **Country Code**, **Latitude** and **Longitude** are filled in, and the pin lands on the organization's public address
 
 #### After you publish
 
@@ -294,6 +295,7 @@ Data entry volunteers build the **Apprenticeship Marketplace**: listings for app
 - [ ] Opportunity name
 - [ ] Craft / skill
 - [ ] Location and country
+- [ ] **Country Code**, **Latitude** and **Longitude** of the workshop or training site (see [Adding locations (GIS)](#adding-locations-gis))
 - [ ] Description
 - [ ] Duration
 - [ ] Apprentice level (Beginner / Intermediate / Advanced)
@@ -314,9 +316,9 @@ Data entry volunteers build the **Apprenticeship Marketplace**: listings for app
 
 #### Adding locations (GIS)
 
-Every research entry needs a location so it can appear as a point on the website's globe and maps. Researchers add it when they submit; Data Entry volunteers fill in records that are missing it and fix ones QA sends back.
+Every research entry and apprenticeship listing needs a location so it can appear as a point on the website's globe and maps. Researchers add it when they submit; Data Entry volunteers add it to every apprenticeship listing, fill in research records that are missing it, and fix ones QA sends back.
 
-**The fields** (in Colonial Laws, Reparations Cases, Modern Cases, and Modern Laws and Policies)
+**The fields** (in Colonial Laws, Reparations Cases, Modern Cases, Modern Laws and Policies, and Apprenticeship Opportunities)
 
 | Field | Required? | Format | Example |
 |---|---|---|---|
@@ -329,7 +331,8 @@ Every research entry needs a location so it can appear as a point on the website
 2. **Find the coordinates.** In Google Maps, right-click the place and click the numbers at the top of the menu to copy them. They copy as `latitude, longitude`. Put the first number in **Latitude** and the second in **Longitude**.
 3. **Check the point.** Paste `latitude, longitude` back into the Google Maps search bar, or into [geojson.io](https://geojson.io), and confirm the pin lands in the right place.
 4. **Add the country code.** Look up the two-letter code in the [ISO 3166 country code list](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) (Ghana `GH`, Kenya `KE`, South Africa `ZA`, United Kingdom `GB`).
-5. **Note historical places.** If the place name has changed or no longer exists, use its present-day location and mention the historical name in the write-up.
+5. **For apprenticeships**, use the workshop or training site from the organization's **public** address, and always fill in Latitude and Longitude. Never map a private home unless the organization has agreed.
+6. **Note historical places.** If the place name has changed or no longer exists, use its present-day location and mention the historical name in the write-up.
 
 **Tools**
 
