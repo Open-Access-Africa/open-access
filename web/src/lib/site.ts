@@ -71,7 +71,7 @@ export const roles = [
     name: "Professional",
     what: "Bring your expertise in law, history, archives or architecture to make the archive credible, advising on legal mechanisms and reparation status.",
   },
-  { name: "QA Reviewer", what: "Check submissions for accuracy, sources, and completeness before they're published." },
+  { name: "QA Reviewer", what: "Check submissions for accuracy, sources, and completeness before they are published." },
   { name: "Data Entry", what: "Build the Apprenticeship Marketplace by collecting listings from organizations." },
   { name: "Developer", what: "Build the Open Access website." },
 ];

@@ -4,7 +4,7 @@ import { tracks } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Archive",
-  description: "The Open Access archive is being built. Here's what it will include.",
+  description: "The Open Access archive is being built. Here is what it will include.",
 };
 
 export default function Archive() {
@@ -18,7 +18,7 @@ export default function Archive() {
       </h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
         Our volunteers are researching and reviewing the first entries now. When the archive
-        opens, you&apos;ll be able to search and filter every published entry, explore them on a
+        opens, you will be able to search and filter every published entry, explore them on a
         timeline and a map, and export what you find.
       </p>
       <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

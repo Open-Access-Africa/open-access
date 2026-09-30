@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 const join = [
   { title: "Sign up", text: "Fill in the short volunteer form and tell us which role interests you." },
-  { title: "Meet us", text: "We'll set up a short onboarding call and invite you to our Discord community." },
-  { title: "Start", text: "You'll receive a welcome email with your first task and a set of leads to research." },
+  { title: "Meet us", text: "We will set up a short onboarding call and invite you to our Discord community." },
+  { title: "Start", text: "You will receive a welcome email with your first task and a set of leads to research." },
 ];
 
 export default function GetInvolved() {
