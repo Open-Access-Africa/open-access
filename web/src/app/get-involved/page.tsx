@@ -41,10 +41,6 @@ export default function GetInvolved() {
               <li key={r.name} className="flex flex-col rounded-2xl border border-line bg-paper p-7">
                 <h3 className="font-display text-2xl font-semibold">{r.name}</h3>
                 <p className="mt-3 leading-relaxed text-ink-soft">{r.what}</p>
-                <p className="mt-auto pt-5 text-sm text-muted">
-                  <span className="font-semibold text-ink">You&apos;ll need: </span>
-                  {r.need}
-                </p>
               </li>
             ))}
           </ul>
