@@ -1,8 +1,22 @@
-import Image from "next/image";
 import Link from "next/link";
+import { HomeGlobe } from "@/components/HomeGlobe";
+import { entryHref, entryLocation, getPublishedEntries } from "@/lib/archive";
+import { SAMPLE_POINTS, type GlobePoint } from "@/lib/globe-points";
 import { lawAndRecord, links, roles, tracks, trackPrompts } from "@/lib/site";
 
-export default function Home() {
+// Re-read published entries from Airtable at most every 5 minutes.
+export const revalidate = 300;
+
+export default async function Home() {
+  const entries = await getPublishedEntries();
+  const livePoints: GlobePoint[] = entries.flatMap((e) => {
+    const loc = entryLocation(e);
+    return loc
+      ? [{ ...loc, label: e.title, sublabel: [e.trackLabel, e.year].filter(Boolean).join(" · "), href: entryHref(e) }]
+      : [];
+  });
+  const usingSamples = livePoints.length === 0;
+  const points = usingSamples ? SAMPLE_POINTS : livePoints;
   return (
     <>
       {/* Title area */}
@@ -28,20 +42,20 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* Globe (static image for now; the interactive globe replaces it in step 3) */}
+      {/* Interactive globe: published entries, or labelled sample points until the first are published */}
       <section
         aria-labelledby="globe-heading"
         className="bg-[radial-gradient(ellipse_at_40%_50%,#e3f1f2_0%,#edf4f5_45%,#f4f7f8_75%)]"
       >
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_380px] lg:px-14 lg:py-16">
-          <Image
-            src="/globe-points.webp"
-            priority
-            alt="A globe drawn as a cloud of teal points, centred on Africa, with dark markers where archive entries are located."
-            width={960}
-            height={960}
-            className="mx-auto w-full max-w-[860px]"
-          />
+          <figure className="m-0">
+            <HomeGlobe points={points} />
+            <figcaption className="mt-3 text-center font-mono text-xs tracking-[0.2em] text-[#5a6b78] uppercase">
+              {usingSamples
+                ? "Sample points shown until the first entries are published"
+                : `${livePoints.length} published ${livePoints.length === 1 ? "entry" : "entries"} · drag to rotate · click a point`}
+            </figcaption>
+          </figure>
           <div className="flex flex-col items-center gap-4 rounded-2xl border border-line bg-white/90 p-7 text-center shadow-[0_12px_40px_rgba(14,27,44,0.10)]">
             <span aria-hidden className="flex h-13 w-13 items-center justify-center rounded-full bg-[#d5e6e8]">
               <span className="h-4.5 w-4.5 rounded-full bg-ink" />
