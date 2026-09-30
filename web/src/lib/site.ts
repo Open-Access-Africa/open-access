@@ -64,32 +64,16 @@ export const lawAndRecord = [
   },
 ];
 
+// Role descriptions match the Roles table in the README.
 export const roles = [
-  {
-    name: "Researcher",
-    what: "Research laws and cases from our leads and write them up through simple online forms.",
-    need: "Curiosity and care with sources. No experience needed.",
-  },
+  { name: "Researcher", what: "Research laws and cases from assigned leads, then submit them through the forms." },
   {
     name: "Professional",
-    what: "Research like a researcher and bring expertise in law, history, archives or architecture to keep entries accurate.",
-    need: "A professional or academic background in a related field.",
+    what: "Bring your expertise in law, history, archives or architecture to make the archive credible, advising on legal mechanisms and reparation status.",
   },
-  {
-    name: "QA Reviewer",
-    what: "Check submissions for accuracy, sources and completeness before they go public.",
-    need: "An eye for detail. An Airtable account.",
-  },
-  {
-    name: "Data Entry",
-    what: "Build the Apprenticeship Marketplace by collecting listings from organizations.",
-    need: "Comfort reaching out to organizations.",
-  },
-  {
-    name: "Developer",
-    what: "Build this website: the public Archive, the Marketplace and the Volunteer Portal.",
-    need: "Next.js, TypeScript and Git.",
-  },
+  { name: "QA Reviewer", what: "Check submissions for accuracy, sources, and completeness before they are published." },
+  { name: "Data Entry", what: "Build the Apprenticeship Marketplace by collecting listings from organizations." },
+  { name: "Developer", what: "Build the Open Access website." },
 ];
 
 export const building = [
