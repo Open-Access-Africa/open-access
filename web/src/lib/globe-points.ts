@@ -11,18 +11,25 @@ export type GlobePoint = {
 
 /*
   How each track is drawn on the home globe.
-  - Reparations Cases: green circles that send out a repeating ping.
-  - Colonial Laws: smaller yellow pins with a soft glow (no animation).
-  - Modern Cases and Modern Laws and Policies: plain magenta markers for now.
+  Cases are circles that ping; laws are smaller pins that glow (no animation).
+  - Reparations Cases and Modern Cases: green circles with a repeating ping.
+  - Colonial Laws: yellow pins with a yellow glow.
+  - Modern Laws and Policies: green pins with a green glow.
 */
 export const MARKERS = {
-  reparation: { color: "#1f9d55", ping: "31,157,85" },
+  case: { color: "#1f9d55", ping: "31,157,85" },
   colonialLaw: { color: "#f2c200", glow: "255,190,0" },
-  other: { color: "#ec20fd" },
+  modernLaw: { color: "#1f9d55", glow: "31,157,85" },
 } as const;
 
-export const isReparation = (p: GlobePoint) => p.track === "reparations-cases";
-export const isColonialLaw = (p: GlobePoint) => p.track === "colonial-laws";
+export type LawMarker = { color: string; glow: string };
+
+/** Reparations Cases and Modern Cases: green pinging circles. */
+export const isCase = (p: GlobePoint) => p.track === "reparations-cases" || p.track === "modern-cases";
+/** Colonial Laws and Modern Laws and Policies: glowing pins. */
+export const isLaw = (p: GlobePoint) => p.track === "colonial-laws" || p.track === "modern-laws";
+export const lawMarker = (p: GlobePoint): LawMarker =>
+  p.track === "modern-laws" ? MARKERS.modernLaw : MARKERS.colonialLaw;
 
 /*
   Shown only while nothing is published yet. Each is clearly labelled as a
