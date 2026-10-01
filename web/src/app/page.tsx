@@ -94,13 +94,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Join the investigation */}
+      {/* Join the research */}
       <section aria-labelledby="join-heading" className="bg-navy text-[#f4f7f8]">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-2 lg:px-14">
           <div className="flex flex-col items-start gap-5">
             <p className="font-mono text-xs tracking-[0.3em] text-gold uppercase sm:text-sm">Recruiting · Remote</p>
             <h2 id="join-heading" className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Join the investigation
+              Join the research
             </h2>
             {/* remove sentence 
             <p className="max-w-md text-lg leading-relaxed text-[#c5d0d8]">

@@ -1,15 +1,15 @@
 # Open Access – Africa
 
-**Open Access** is a public archive that maps the laws colonial powers used to legalize extraction, exploitation, cultural suppression and the resulting legal actions taken in modern society to demand redress or monetary compensation for systematic oppression. Volunteers research and document four connected tracks:
+**Open Access** is a public archive of colonial laws and the later cases, settlements and laws connected to them. Volunteers research and document four connected tracks:
 
 | Track                        | What it documents                                                                                         |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------- |
-| **Colonial Laws**            | The legal instruments colonial powers used to legalize extraction, exploitation, and cultural suppression |
-| **Reparations Cases**        | What justice has looked like after systematic colonial legislation. Delivered or refused                  |
-| **Modern Cases**             | Harms happening today, and documented accountability                                                      |
-| **Modern Laws and Policies** | Present-day laws and policies, national and international, that either enable harm or demand redress      |
+| **Colonial Laws**            | Laws and other legal instruments issued under colonial rule, and what each one did                        |
+| **Reparations Cases**        | Settlements, court rulings, apologies and restitution programs, including claims that were rejected       |
+| **Modern Cases**             | Present-day cases and the lawsuits, petitions and inquiries brought over them                             |
+| **Modern Laws and Policies** | Present-day national and international laws that restrict rights or access, set protections, or provide redress |
 
-Alongside the archive, we are also mapping apprenticeship networks that preserve vocational careers and heritage knowledge. But this is an on-the-ground activity involving interviews, translation, and local input of respective communities. Message in Discord if you are interested in supporting.
+Alongside the archive, we are also mapping apprenticeship networks in vocational trades and heritage crafts. This is on-the-ground work involving interviews, translation and input from the communities involved, and it is not described on the public website. Message in Discord if you are interested in supporting.
 
 > [!NOTE]
 > **Where things live**
@@ -156,11 +156,20 @@ The website turns the numbers into links to the matching notes and shows the Not
 
 **Quotes.** Quote only what you've verified in the original source. If you can't confirm the exact wording, paraphrase and cite.
 
+**Factual language.** Entries and website copy describe what happened, not how to feel about it.
+
+- Say what a law or case did, who it applied to, and what changed. Let the sources and figures carry the weight.
+- Avoid judgement words unless you are quoting or attributing them: *justice, exploitation, suppression, oppression, harm, investigation, systematic*. For example, write "barred Africans from buying land outside the reserves", not "exploited Africans".
+- Do not state causes or present-day effects without a source. "Some of these laws were later the subject of court cases" is factual; "the effects are still felt today" needs a citation.
+- Use a law's own wording when describing what it requires, and attribute it, for example "Section 25(5) requires the state to…".
+- Website copy is written without contractions ("it is", not "it's").
+
 Each track also has its own outcome status, separate from our research progress:
 
 - **Reparations Status** (Reparations Cases): Proposed, Ongoing, Partially implemented, Completed, Rejected
 - **Case Status** (Modern Cases): the state of the accountability effort, e.g. Filed, Ongoing, Settled, Dismissed
 - **Current Status** (Modern Laws and Policies): Proposed, In force, Amended, Challenged, Repealed or revoked
+- **Direction** (Modern Laws and Policies): what the law or policy does: Restricts rights or access, Sets protections, or Provides redress
 
 #### FAQ
 
@@ -196,7 +205,7 @@ Professionals bring specialization, such as law, architecture, or archival work.
 | **Legal Mechanism for Redress** (Reparations Cases) | By what legal route was the remedy delivered? *For further thinking: does the classification represent the outcomes?* |
 | **Reparations Status**                              | Is the outcome described correctly: Proposed, Ongoing, Partially implemented, Completed, or Rejected?                 |
 | **Instrument Type** and **Summary** (Colonial Laws) | Is the legal form right and does the summary reflect the law's actual effect?                                         |
-| **Mechanism of Harm** (all research tracks)         | Do the tags match the harm described, and does the write-up support them?                                             |
+| **Mechanism** (all research tracks)                 | Do the tags match what the law or case did, and does the write-up support them?                                       |
 | **Sources**                                         | Are primary legal sources (statutes, gazettes, judgments) cited where possible?                                       |
 
 **3. Help the team.**
@@ -252,7 +261,7 @@ In each research table, look for records where **Task Status** is **Submitted**.
 
 **Colonial Laws**
 - [ ] **Summary** is 2–3 sentences
-- [ ] **Analysis** is 200+ words and explains the **Mechanism of Harm**
+- [ ] **Analysis** is 200+ words and explains the **Mechanism**
 - [ ] **Year Enacted**, **Colonial Power**, and **Colony / Territory** are consistent with the sources
 - [ ] **Estimated Value Extracted** states its currency and basis, or is left blank
 
@@ -283,7 +292,7 @@ In each research table, look for records where **Task Status** is **Submitted**.
 
 ### Data Entry
 
-Data entry volunteers build the **Apprenticeship Marketplace**: listings for apprenticeships that preserve craft and heritage knowledge, from weaving to repair trades. They also add and check **location data (GIS)** so research entries appear on the website's maps.
+Data entry volunteers build the **Apprenticeship Marketplace**: listings for apprenticeships in crafts and trades, from weaving to repair work. They also add and check **location data (GIS)** so research entries appear on the website's maps.
 
 #### Setup
 

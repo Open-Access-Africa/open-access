@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { tracks } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "What Open Access documents, how the research works, and why it matters.",
+  description: "What Open Access documents and how the research works.",
 };
 
 const steps = [
@@ -14,7 +13,7 @@ const steps = [
   },
   {
     title: "Research",
-    text: "A volunteer researches the lead using at least two credible sources and writes a summary and analysis.",
+    text: "A volunteer researches the lead using at least two sources, such as academic articles, court or government records, archives or news reports, and writes a summary and analysis.",
   },
   {
     title: "Review",
@@ -35,14 +34,14 @@ export default function About() {
         </h1>
         <div className="mt-7 max-w-3xl space-y-5 text-lg leading-relaxed text-ink-soft">
           <p>
-            Colonial rule was carried out through law. Ordinances, acts and treaties made land
-            seizure, forced labour and cultural suppression legal. Many of those effects are still
-            felt today, and people are still seeking redress for them.
+            Colonial governments issued ordinances, acts and treaties that set rules on land,
+            labour, taxation, culture and language. Some of these laws were later the subject of
+            court cases, settlements and new legislation.
           </p>
           <p>
-            Open Access brings that record together in one free, public archive, so students,
-            researchers, advocates and communities can trace a harm from the law that created it
-            to the claims and remedies that followed.
+            Open Access collects these records in one free, public archive. Each entry links a law
+            to the later cases and laws connected to it, so students, researchers, advocates and
+            communities can follow the record over time.
           </p>
         </div>
       </section>
@@ -81,24 +80,6 @@ export default function About() {
         </ol>
       </section>
 
-      <section aria-labelledby="apprent-heading" className="border-t border-line bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <h2 id="apprent-heading" className="font-display text-3xl font-semibold">
-            Apprenticeships and heritage knowledge
-          </h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-ink-soft">
-            Alongside the archive, we are mapping apprenticeship networks that preserve vocational
-            careers and heritage knowledge. This is on-the-ground work involving interviews,
-            translation and input from the communities themselves.
-          </p>
-          <Link
-            href="/get-involved"
-            className="mt-8 inline-flex min-h-12 items-center rounded-full bg-ink px-6 font-semibold text-white hover:bg-ink/90"
-          >
-            Get involved
-          </Link>
-        </div>
-      </section>
     </>
   );
 }

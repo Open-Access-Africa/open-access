@@ -8,23 +8,23 @@ export const links = {
 export const tracks = [
   {
     name: "Colonial Laws",
-    short: "The legal instruments colonial powers used to make extraction legal.",
-    long: "Ordinances, acts, treaties and decrees that legalized land seizure, forced labour, taxation and cultural suppression. We record what each law did, who it harmed, and where it came from.",
+    short: "Laws and other legal instruments issued under colonial rule.",
+    long: "Ordinances, acts, treaties and decrees issued under colonial rule, including laws on land, labour, taxation, culture and language. Each entry records what the law did, who it applied to, and where it came from.",
   },
   {
     name: "Reparations Cases",
-    short: "What justice has looked like since.",
+    short: "Settlements, rulings and programs that followed.",
     long: "Settlements, court rulings, apologies and restitution programs around the world, including the claims that were rejected.",
   },
   {
     name: "Modern Cases",
-    short: "Harms happening today, and who is being held accountable.",
-    long: "Present-day harms, and the lawsuits, petitions and inquiries that seek accountability for them.",
+    short: "Present-day cases and the legal actions brought over them.",
+    long: "Present-day cases, and the lawsuits, petitions and inquiries brought over them, with their current status.",
   },
   {
     name: "Modern Laws & Policies",
-    short: "Laws today that enable harm or demand redress.",
-    long: "National and international laws, regulations and resolutions that either enable exploitation or demand redress for it.",
+    short: "Present-day laws and policies on the same issues.",
+    long: "National and international laws, regulations and resolutions that restrict rights, set protections or provide redress.",
   },
 ];
 
@@ -65,8 +65,8 @@ export const lawAndRecord = [
     kind: "Modern Law",
     year: "1996",
     title: "Constitution, Section 25",
-    text: "The property clause that commits the state to land reform and equitable access to land.",
-    footer: "Demands redress · In force",
+    text: "The property clause. Section 25(5) requires the state to take reasonable measures to enable citizens to gain access to land on an equitable basis.",
+    footer: "Land reform · In force",
     color: "text-[#bf02cf]",
   },
 ];
@@ -76,10 +76,10 @@ export const roles = [
   { name: "Researcher", what: "Research laws and cases from assigned leads, then submit them through the forms." },
   {
     name: "Professional",
-    what: "Bring your expertise in law, history, archives or architecture to make the archive credible, advising on legal mechanisms and reparation status.",
+    what: "Bring expertise in law, history, archives or architecture to review legal mechanisms and reparation status.",
   },
   { name: "QA Reviewer", what: "Check submissions for accuracy, sources, and completeness before they are published." },
-  { name: "Data Entry", what: "Build the Apprenticeship Marketplace by collecting listings from organizations." },
+  { name: "Data Entry", what: "Add and check location data so entries appear on the website's maps." },
   { name: "Developer", what: "Build the Open Access website." },
 ];
 
@@ -88,11 +88,6 @@ export const building = [
     name: "The Archive",
     status: "In progress",
     text: "A free, searchable public archive of all four tracks, with timeline and map views and export to CSV and PDF.",
-  },
-  {
-    name: "The Apprenticeship Marketplace",
-    status: "In progress",
-    text: "A directory of apprenticeships that preserve craft and heritage knowledge, from weaving to repair trades.",
   },
   {
     name: "The Volunteer Portal",
