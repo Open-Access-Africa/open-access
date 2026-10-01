@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3 lg:px-14">
         <div className="space-y-3">
           <p className="flex items-center gap-3">
-            <GlobeMark className="h-7 w-7" />
+            <GlobeMark src ="/logo-light.png" className="h-10 w-10" />
             <span className="font-display text-lg font-extrabold tracking-[0.12em]">Open Access</span>
           </p>
           <p className="text-sm leading-relaxed text-white/80">
