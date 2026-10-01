@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { HomeGlobe } from "@/components/HomeGlobe";
-import { StartPanel } from "@/components/StartPanel";
+import { GlobeExplorer } from "@/components/GlobeExplorer";
 import { entryHref, entryLocation, getPublishedEntries } from "@/lib/archive";
 import { SAMPLE_POINTS, type GlobePoint } from "@/lib/globe-points";
 import { lawAndRecord, links, roles, tracks, trackPrompts } from "@/lib/site";
@@ -13,7 +12,15 @@ export default async function Home() {
   const livePoints: GlobePoint[] = entries.flatMap((e) => {
     const loc = entryLocation(e);
     return loc
-      ? [{ ...loc, label: e.title, sublabel: [e.trackLabel, e.year].filter(Boolean).join(" · "), href: entryHref(e) }]
+      ? [
+          {
+            ...loc,
+            label: e.title,
+            sublabel: [e.trackLabel, e.year].filter(Boolean).join(" · "),
+            href: entryHref(e),
+            track: e.track,
+          },
+        ]
       : [];
   });
   const usingSamples = livePoints.length === 0;
@@ -47,18 +54,15 @@ export default async function Home() {
 
       {/* Full-screen interactive globe in a soft mist, with the start box floating over it */}
       <section aria-labelledby="globe-heading" className="relative overflow-hidden">
-        <div className="relative h-[calc(100svh-81px)] min-h-[560px] w-full">
-          <div className="globe-mist h-full w-full">
-            <HomeGlobe points={points} />
-          </div>
-          <div aria-hidden className="globe-haze pointer-events-none absolute inset-0" />
-          <StartPanel prompts={trackPrompts} />
-          <p className="absolute right-0 bottom-2 left-0 z-10 text-center font-mono text-xs tracking-[0.2em] text-[#5a6b78] uppercase">
-            {usingSamples
+        <GlobeExplorer
+          points={points}
+          trackPrompts={trackPrompts}
+          caption={
+            usingSamples
               ? "Sample points shown until the first entries are published"
-              : `${livePoints.length} published ${livePoints.length === 1 ? "entry" : "entries"} · drag to rotate · click a point`}
-          </p>
-        </div>
+              : `${livePoints.length} published ${livePoints.length === 1 ? "entry" : "entries"} · drag to rotate · scroll to zoom`
+          }
+        />
       </section>
 
       {/* Law & Record */}

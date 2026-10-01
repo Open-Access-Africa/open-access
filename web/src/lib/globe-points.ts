@@ -4,6 +4,8 @@ export type GlobePoint = {
   label: string;
   sublabel: string;
   href: string;
+  /** Archive track the entry belongs to, e.g. "colonial-laws". Sample points have none. */
+  track?: string;
   sample?: boolean;
 };
 

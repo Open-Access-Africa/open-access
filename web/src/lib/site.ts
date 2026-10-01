@@ -28,12 +28,13 @@ export const tracks = [
   },
 ];
 
-// Starting points shown beside the globe on the home page.
+// Tracks in the "Where would you like to start?" box over the globe.
+// slug matches the archive track, so each button can find that track's pins.
 export const trackPrompts = [
-  { track: "Colonial Laws", tint: "bg-[#f1f4e3] border-[#dce3be]" },
-  { track: "Reparations Cases", tint: "bg-[#f9e3ea] border-[#eec5d2]" },
-  { track: "Modern Cases", tint: "bg-[#e7edfb] border-[#c9d5f2]" },
-  { track: "Modern Laws & Policies", tint: "bg-[#fbf3df] border-[#eeddb2]" },
+  { track: "Colonial Laws", slug: "colonial-laws", tint: "bg-[#f1f4e3] border-[#dce3be]" },
+  { track: "Reparations Cases", slug: "reparations-cases", tint: "bg-[#f9e3ea] border-[#eec5d2]" },
+  { track: "Modern Cases", slug: "modern-cases", tint: "bg-[#e7edfb] border-[#c9d5f2]" },
+  { track: "Modern Laws & Policies", slug: "modern-laws", tint: "bg-[#fbf3df] border-[#eeddb2]" },
 ];
 
 // "Law & Record" section on the home page: one colonial law and the records that followed it.

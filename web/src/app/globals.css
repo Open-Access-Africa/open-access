@@ -65,3 +65,38 @@ p {
     radial-gradient(circle at 70% 16%, rgb(244 247 248 / 0.6), transparent 18%),
     radial-gradient(circle at 26% 84%, rgb(244 247 248 / 0.7), transparent 20%);
 }
+
+/* Start box: location ping on the circle above the heading. The pale outer circle
+   grows and fades out, then shrinks and fades back in; the dark centre stays still. */
+@keyframes gps-ping {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.3;
+  }
+}
+.gps-ping {
+  animation: gps-ping 2.2s ease-in-out infinite;
+}
+
+/* Start box and pin card fade in when they appear. */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+.start-panel {
+  animation: panel-in 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gps-ping,
+  .start-panel {
+    animation: none;
+  }
+}
