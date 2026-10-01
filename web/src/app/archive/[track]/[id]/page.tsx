@@ -101,7 +101,7 @@ export default async function CaseFilePage({ params }: Props) {
         <aside className="space-y-8">
           {entry.mechanisms.length > 0 && (
             <div>
-              <h2 className="font-mono text-xs tracking-[0.3em] text-[#9fe3e0] uppercase">Mechanism of harm</h2>
+              <h2 className="font-mono text-xs tracking-[0.3em] text-[#9fe3e0] uppercase">Mechanism</h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {entry.mechanisms.map((m) => (
                   <li key={m} className="rounded-full bg-[#e4f4f3] px-3 py-1 text-sm font-medium text-[#0f5a5d]">{m}</li>

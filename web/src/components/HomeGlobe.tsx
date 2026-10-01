@@ -18,7 +18,7 @@ import { feature } from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import countries110m from "world-atlas/countries-110m.json";
 import type { GlobeMethods } from "react-globe.gl";
-import { MARKERS, isColonialLaw, isReparation, type GlobePoint } from "@/lib/globe-points";
+import { caseMarker, isLaw, lawMarker, type GlobePoint, type LawMarker } from "@/lib/globe-points";
 
 // three.js needs the browser, so the globe is never rendered on the server.
 const Globe = dynamic(() => import("@/components/GlobeCanvas"), { ssr: false });
@@ -46,27 +46,27 @@ function pinLabel(p: GlobePoint) {
 }
 
 // Marker sizes. Globe radius is 100 units; point radii are in degrees.
-const REPARATION_RADIUS = 0.75; // green circle
-const LAW_CORE_RADIUS = 0.42; // yellow pin, in globe units (about half the green circle)
-const LAW_GLOW_SIZE = 3.4; // width of the glow around a yellow pin
+const CASE_RADIUS = 0.75; // case circle (Reparations Cases, Modern Cases)
+const LAW_CORE_RADIUS = 0.42; // law pin, in globe units (about half the green circle)
+const LAW_GLOW_SIZE = 3.4; // width of the glow around a law pin
 const LAW_GLOW_SIZE_FOCUSED = 5.6; // glow around the pin a track button spun to
 
-/** Soft round glow, drawn once and shared by every colonial-law pin. */
-function makeGlowTexture() {
+/** Soft round glow, drawn once per colour and shared by every pin of that colour. */
+function makeGlowTexture(rgb: string, alpha: number) {
   const size = 128;
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext("2d")!;
   const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  g.addColorStop(0, `rgba(${MARKERS.colonialLaw.glow},0.95)`);
-  g.addColorStop(0.35, `rgba(${MARKERS.colonialLaw.glow},0.45)`);
-  g.addColorStop(1, `rgba(${MARKERS.colonialLaw.glow},0)`);
+  g.addColorStop(0, `rgba(${rgb},${alpha})`);
+  g.addColorStop(0.35, `rgba(${rgb},${alpha * 0.47})`);
+  g.addColorStop(1, `rgba(${rgb},0)`);
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, size, size);
   return new CanvasTexture(canvas);
 }
 
-/** Small stagger so the reparation pings do not all pulse in step. */
+/** Small stagger so the case pings do not all pulse in step. */
 function pingPeriod(p: GlobePoint) {
   let h = 0;
   for (const c of p.label) h = (h * 31 + c.charCodeAt(0)) % 997;
@@ -95,7 +95,7 @@ export type GlobeApi = {
 
 type Props = {
   points: GlobePoint[];
-  /** The pin a track button spun to, if any: a reparation pin pings wider, a law pin glows brighter. */
+  /** The pin a track button spun to, if any: a case pin pings wider, a law pin glows wider. */
   pulse?: GlobePoint | null;
   onApi?: (api: GlobeApi) => void;
   /** Area whose scroll-wheel events zoom the globe (defaults to the globe itself). */
@@ -115,22 +115,33 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
     [],
   );
 
-  // Reparations Cases and the other modern tracks are drawn as points; Colonial Laws as glowing pins.
-  const flatPoints = useMemo(() => points.filter((p) => !isColonialLaw(p)), [points]);
-  const lawPins = useMemo(() => points.filter(isColonialLaw), [points]);
-  const pings = useMemo(() => points.filter(isReparation), [points]);
+  // Cases are drawn as flat circles that ping; laws as glowing pins.
+  const casePoints = useMemo(() => points.filter((p) => !isLaw(p)), [points]);
+  const lawPins = useMemo(() => points.filter(isLaw), [points]);
+  const pings = casePoints;
 
-  // Shared three.js parts for the colonial-law pins. Built in the browser only (the canvas needs `document`).
-  const lawParts = useRef<{ core: SphereGeometry; coreMaterial: MeshBasicMaterial; glow: SpriteMaterial } | null>(null);
+  // Shared three.js parts for the law pins, one set per colour. Built in the browser only
+  // (the glow canvas needs `document`).
+  const lawGeometry = useRef<SphereGeometry | null>(null);
+  const lawParts = useRef(new Map<string, { coreMaterial: MeshBasicMaterial; glow: SpriteMaterial }>());
   const lawObject = (d: object): Object3D => {
-    if (!lawParts.current) {
-      lawParts.current = {
-        core: new SphereGeometry(LAW_CORE_RADIUS, 16, 12),
-        coreMaterial: new MeshBasicMaterial({ color: MARKERS.colonialLaw.color }),
-        glow: new SpriteMaterial({ map: makeGlowTexture(), transparent: true, depthWrite: false }),
+    const style: LawMarker = lawMarker(d as GlobePoint);
+    lawGeometry.current ??= new SphereGeometry(LAW_CORE_RADIUS, 16, 12);
+    const key = JSON.stringify(style);
+    let parts = lawParts.current.get(key);
+    if (!parts) {
+      parts = {
+        coreMaterial: new MeshBasicMaterial({ color: style.color, transparent: style.opacity < 1, opacity: style.opacity }),
+        glow: new SpriteMaterial({
+          map: makeGlowTexture(style.glow, style.glowAlpha),
+          transparent: true,
+          depthWrite: false,
+        }),
       };
+      lawParts.current.set(key, parts);
     }
-    const { core, coreMaterial, glow } = lawParts.current;
+    const core = lawGeometry.current;
+    const { coreMaterial, glow } = parts;
     const group = new Group();
     const halo = new Sprite(glow);
     const size = d === pulse ? LAW_GLOW_SIZE_FOCUSED : LAW_GLOW_SIZE;
@@ -281,18 +292,18 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
             hexPolygonMargin={0.3} // gap around each dot
             hexPolygonUseDots //dot color and transparency
             hexPolygonColor={() => "rgb(159, 218, 212)"}
-            // Reparations Cases: flat green circles. Other modern tracks keep the magenta marker for now.
-            pointsData={flatPoints}
+            // Cases: flat circles. Reparations Cases green, Modern Cases blue.
+            pointsData={casePoints}
             pointLat="lat"
             pointLng="lng"
-            pointColor={(d: object) => (isReparation(d as GlobePoint) ? MARKERS.reparation.color : MARKERS.other.color)}
+            pointColor={(d: object) => caseMarker(d as GlobePoint).color}
             pointAltitude={0.004}
-            pointRadius={REPARATION_RADIUS}
+            pointRadius={CASE_RADIUS}
             pointResolution={32}
             pointsMerge={false}
             pointLabel={(d: object) => pinLabel(d as GlobePoint)}
             onPointClick={(d: object) => router.push((d as GlobePoint).href)}
-            // Colonial Laws: smaller yellow pins with a soft, steady glow.
+            // Laws: smaller pins with a steady glow. Colonial Laws yellow, Modern Laws and Policies magenta.
             objectsData={lawPins}
             objectLat="lat"
             objectLng="lng"
@@ -300,11 +311,14 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
             objectThreeObject={lawObject}
             objectLabel={(d: object) => pinLabel(d as GlobePoint)}
             onObjectClick={(d: object) => router.push((d as GlobePoint).href)}
-            // Only Reparations Cases ping. The pin a track button spun to pings wider.
+            // Only the case circles ping. The pin a track button spun to pings wider.
             ringsData={pings}
             ringLat="lat"
             ringLng="lng"
-            ringColor={() => (t: number) => `rgba(${MARKERS.reparation.ping},${0.9 * (1 - t)})`}
+            ringColor={(d: object) => {
+              const { ping, pingAlpha } = caseMarker(d as GlobePoint);
+              return (t: number) => `rgba(${ping},${pingAlpha * (1 - t)})`;
+            }}
             ringMaxRadius={(d: object) => (d === pulse ? 4.5 : 2.6)}
             ringPropagationSpeed={2}
             ringRepeatPeriod={(d: object) => pingPeriod(d as GlobePoint)}

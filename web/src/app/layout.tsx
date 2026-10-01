@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s · Open Access",
   },
   description:
-    "Open Access is a free public archive of the laws colonial powers used to legalize extraction, exploitation and cultural suppression, and of the legal actions taken since to demand redress.",
+    "Open Access is an independent research project and public archive of colonial laws and the later cases, settlements and laws connected to them.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
