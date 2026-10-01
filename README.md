@@ -140,8 +140,17 @@ Every entry needs:
 - [ ] **Every required field** completed
 - [ ] **Country Code**, plus **Latitude** and **Longitude** if the record is tied to a specific place (see [Adding locations (GIS)](#adding-locations-gis))
 - [ ] **Your signup email** in the email field
+- [ ] **Chicago-style citations**: note numbers in the text and full notes plus a bibliography in **Source Text** (see below)
 
-**Sources without a link.** Books, archive files, and gazettes often have no URL. Put the full citation in **Source Text**: author, title, publisher, year, page or archive reference. This is a required field so if you only have one link and no text, you can prioritize the **Source Text** field.
+**Citations (Chicago notes and bibliography).** Every entry cites its sources in Chicago notes-bibliography style. The full guide, with worked examples, is the *Citation guide* in the Volunteer Portal's Resources.
+
+- In the **Summary** and **Analysis** (or **Case Summary** and **Context**), put a superscript note number after each sourced claim, after the punctuation: `...in 1913.¹`. Number the notes in one sequence, Summary first. Never reuse a number.
+- In **Source Text**, write a `NOTES` heading with the numbered notes (`1. ...`), then a `BIBLIOGRAPHY` heading with every source once, in alphabetical order. Give a full note the first time you cite a source and a short note after that.
+- Wrap titles in `*asterisks*` to show them in italics on the website.
+- Cite every source, including those already linked in Source 1–3, and sources without a link such as books, archive files and gazettes (with the page or archive reference).
+- If you cannot source a claim, leave it without a number and list it in a record comment for the reviewer.
+
+The website turns the numbers into links to the matching notes and shows the Notes and Bibliography below the Analysis.
 
 **Speeches.** Speeches are recorded as **sources on the related law**, not as separate entries. Include the speaker, date, venue, and where the transcript can be found.
 
@@ -231,6 +240,7 @@ In each research table, look for records where **Task Status** is **Submitted**.
 - [ ] All required fields are complete
 - [ ] **2+ credible sources**, across the Source URLs and **Source Text**
 - [ ] Source links work, and they actually support the claims made
+- [ ] Every sourced claim has a note number, every number has a matching note in **Source Text**, and the Bibliography lists every source (Chicago style)
 - [ ] No unverified quotes: quoted wording matches the original source
 - [ ] Neutral, factual tone
 

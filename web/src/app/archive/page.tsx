@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TRACKS, entryHref, getPublishedEntries } from "@/lib/archive";
 import { tracks } from "@/lib/site";
+import { stripNoteRefs } from "@/lib/citations";
 
 export const revalidate = 300;
 
@@ -63,7 +64,7 @@ export default async function Archive() {
                         <span>{e.year}</span>
                       </span>
                       <span className="font-display text-lg leading-tight font-bold tracking-wide">{e.title}</span>
-                      {e.summary && <span className="line-clamp-3 text-[15px] leading-relaxed text-ink-soft">{e.summary}</span>}
+                      {e.summary && <span className="line-clamp-3 text-[15px] leading-relaxed text-ink-soft">{stripNoteRefs(e.summary)}</span>}
                       <span className="mt-auto pt-2 font-mono text-xs tracking-[0.14em] text-[#5a6b78] uppercase">Open case file →</span>
                     </Link>
                   </li>
