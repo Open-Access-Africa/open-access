@@ -39,9 +39,9 @@ export default function About() {
             court cases, settlements and new legislation.
           </p>
           <p>
-            Open Access collects these records in one free, public archive. Each entry links a law
-            to the later cases and laws connected to it, so students, researchers, advocates and
-            communities can follow the record over time.
+            Open Access is an independent research project and a public archive of these records.
+            Each entry links a law to the later cases and laws connected to it, so students,
+            researchers, advocates and communities can follow the record over time.
           </p>
         </div>
       </section>
