@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { TrackSwatch } from "@/components/GlobeKey";
 
 export type StartTrack = { track: string; slug: string; prompt?: string; tint: string; count: number };
 
@@ -68,7 +69,10 @@ export function StartPanel({ tracks, open, onOpen, onClose, onPick }: Props) {
                   }`}
                 >
                   <span>
-                    <strong className="font-semibold">{t.track}</strong>
+                    <strong className="flex items-center gap-2 font-semibold">
+                      <TrackSwatch slug={t.slug} />
+                      {t.track}
+                    </strong>
                     {t.prompt && (
                       <>
                         <br />

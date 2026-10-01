@@ -1,4 +1,4 @@
-import { MARKERS } from "@/lib/globe-points";
+import { MARKERS, caseMarker, isLaw, lawMarker, type GlobePoint } from "@/lib/globe-points";
 
 /*
   Key for the home globe's markers. Shape tells cases from laws; colour tells
@@ -16,11 +16,22 @@ const LAWS = [
   { label: "Modern Laws & Policies", ...MARKERS.modernLaw },
 ];
 
-function CaseSwatch({ color, ping, pingAlpha }: { color: string; ping: string; pingAlpha: number }) {
+function CaseSwatch({
+  color,
+  ping,
+  pingAlpha,
+  still = false,
+}: {
+  color: string;
+  ping: string;
+  pingAlpha: number;
+  /** Show the ping as a still halo instead of animating it. */
+  still?: boolean;
+}) {
   return (
     <span aria-hidden className="relative inline-flex h-3 w-3 shrink-0">
       <span
-        className="absolute inset-0 rounded-full motion-safe:animate-ping"
+        className={`absolute rounded-full ${still ? "-inset-0.5" : "inset-0 motion-safe:animate-ping"}`}
         style={{ backgroundColor: `rgba(${ping},${pingAlpha * 0.6})` }}
       />
       <span className="relative h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
@@ -37,6 +48,12 @@ function LawSwatch({ color, opacity, glow, glowAlpha }: { color: string; opacity
       />
     </span>
   );
+}
+
+/** A track's globe marker, still, for the start box buttons. */
+export function TrackSwatch({ slug }: { slug: string }) {
+  const p = { track: slug } as GlobePoint;
+  return isLaw(p) ? <LawSwatch {...lawMarker(p)} /> : <CaseSwatch {...caseMarker(p)} still />;
 }
 
 export function GlobeKey() {

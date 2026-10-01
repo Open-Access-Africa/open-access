@@ -30,11 +30,14 @@ export const tracks = [
 
 // Tracks in the "Where would you like to start?" box over the globe.
 // slug matches the archive track, so each button can find that track's pins.
+// Tints are pastel versions of each track's globe marker (MARKERS in globe-points.ts):
+// background about 10% of the marker colour on white, border about 30% (Colonial Laws
+// slightly stronger, since yellow reads paler).
 export const trackPrompts = [
-  { track: "Colonial Laws", slug: "colonial-laws", tint: "bg-[#f1f4e3] border-[#dce3be]" },
-  { track: "Reparations Cases", slug: "reparations-cases", tint: "bg-[#f9e3ea] border-[#eec5d2]" },
-  { track: "Modern Cases", slug: "modern-cases", tint: "bg-[#e7edfb] border-[#c9d5f2]" },
-  { track: "Modern Laws & Policies", slug: "modern-laws", tint: "bg-[#fbf3df] border-[#eeddb2]" },
+  { track: "Colonial Laws", slug: "colonial-laws", tint: "bg-[#fdf8e0] border-[#fae799]" },
+  { track: "Reparations Cases", slug: "reparations-cases", tint: "bg-[#e9f5ee] border-[#bce2cc]" },
+  { track: "Modern Cases", slug: "modern-cases", tint: "bg-[#e7f3fe] border-[#b6dbfd]" },
+  { track: "Modern Laws & Policies", slug: "modern-laws", tint: "bg-[#fde9ff] border-[#f9bcfe]" },
 ];
 
 // "Law & Record" section on the home page: one colonial law and the records that followed it.
