@@ -46,3 +46,22 @@ p {
   outline: 3px solid var(--color-teal);
   outline-offset: 2px;
 }
+
+/* Home page globe: fade the edges into the page like mist... */
+.globe-mist {
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+}
+
+/* ...and soften the outer ring out of focus, with a few drifting patches of haze. */
+.globe-haze {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, transparent 60%, #000 95%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, transparent 60%, #000 95%);
+  background:
+    radial-gradient(circle at 18% 28%, rgb(244 247 248 / 0.85), transparent 22%),
+    radial-gradient(circle at 82% 70%, rgb(244 247 248 / 0.8), transparent 24%),
+    radial-gradient(circle at 70% 16%, rgb(244 247 248 / 0.6), transparent 18%),
+    radial-gradient(circle at 26% 84%, rgb(244 247 248 / 0.7), transparent 20%);
+}
