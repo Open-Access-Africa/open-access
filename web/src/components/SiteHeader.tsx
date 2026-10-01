@@ -11,7 +11,7 @@ export function SiteHeader() {
     <header className="border-b border-line bg-paper">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-5 sm:px-8 lg:px-14">
         <Link href="/" className="flex items-center gap-3 text-ink">
-          <GlobeMark className="h-8 w-8" />
+          <GlobeMark className="h-10 w-10" />
           <span className="font-display text-lg font-extrabold tracking-[0.12em]">Open Access</span>
         </Link>
         <nav aria-label="Main">

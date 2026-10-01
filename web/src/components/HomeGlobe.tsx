@@ -52,7 +52,7 @@ export function HomeGlobe({ points }: { points: GlobePoint[] }) {
   };
 
   return (
-    <div ref={wrapRef} className="relative mx-auto aspect-square w-full max-w-[860px]">
+    <div ref={wrapRef} className="relative mx-auto aspect-square w-full max-w-[1100px]">
       {size > 0 && (
         <Globe
           ref={globeRef}
@@ -64,16 +64,16 @@ export function HomeGlobe({ points }: { points: GlobePoint[] }) {
           atmosphereColor="#7fd3cf"
           atmosphereAltitude={0.14}
           hexPolygonsData={land}
-          hexPolygonResolution={3}
-          hexPolygonMargin={0.4}
-          hexPolygonUseDots
-          hexPolygonColor={() => "rgba(30,127,131,0.78)"}
+          hexPolygonResolution={9} //finer dots
+          hexPolygonMargin={0.9} // gap around each dot
+          hexPolygonUseDots //dot color and transparency
+          hexPolygonColor={() => "rgb(159, 218, 212)"}
           pointsData={points}
           pointLat="lat"
           pointLng="lng"
-          pointColor={() => "#0e1b2c"}
+          pointColor={() => "#ec20fd"} //color of published entry markers
           pointAltitude={0.02}
-          pointRadius={0.55}
+          pointRadius={0.77}
           pointsMerge={false}
           pointLabel={(d: object) => {
             const p = d as GlobePoint;

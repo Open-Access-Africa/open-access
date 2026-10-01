@@ -24,10 +24,12 @@ export default async function Home() {
         <p className="font-mono text-xs tracking-[0.3em] text-gold-deep uppercase sm:text-sm">
           Archive / Colonial Law / Reparations
         </p>
+        {/* remove Main Heading
         <h1 className="font-display text-5xl leading-none font-extrabold tracking-tight sm:text-7xl lg:text-[80px]">
           <span className="block">Counter mapping strategies</span>
           <span className="block text-teal">Trace the laws</span>
         </h1>
+        */}
         <ul className="flex flex-wrap justify-center gap-3">
           {tracks.map((t) => (
             <li key={t.name}>
@@ -47,7 +49,7 @@ export default async function Home() {
         aria-labelledby="globe-heading"
         className="bg-[radial-gradient(ellipse_at_40%_50%,#e3f1f2_0%,#edf4f5_45%,#f4f7f8_75%)]"
       >
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_380px] lg:px-14 lg:py-16">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_380px] lg:px-14 lg:py-16">
           <figure className="m-0">
             <HomeGlobe points={points} />
             <figcaption className="mt-3 text-center font-mono text-xs tracking-[0.2em] text-[#5a6b78] uppercase">
@@ -63,9 +65,11 @@ export default async function Home() {
             <h2 id="globe-heading" className="text-2xl font-semibold">
               Where would you like to start?
             </h2>
+            {/*remove sentence
             <p className="text-[15px] leading-relaxed text-muted">
               Every point is a law, case or policy in the archive. Start from one of the four tracks.
             </p>
+            */}
             <ul className="mt-1 flex w-full flex-col gap-2.5 text-left">
               {trackPrompts.map((p) => (
                 <li key={p.track}>
@@ -128,9 +132,11 @@ export default async function Home() {
             <h2 id="join-heading" className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
               Join the investigation
             </h2>
+            {/* remove sentence 
             <p className="max-w-md text-lg leading-relaxed text-[#c5d0d8]">
               A few hours a week, in your browser. Most roles need no prior experience.
             </p>
+            */}
             <a
               href={links.volunteerForm}
               className="mt-2 inline-flex min-h-12 items-center bg-gold px-7 font-display text-sm font-bold tracking-[0.16em] text-ink uppercase hover:bg-gold/90"
