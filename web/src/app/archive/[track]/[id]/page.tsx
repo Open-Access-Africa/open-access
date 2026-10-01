@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseMap, type MapPoint } from "@/components/CaseMap";
+import { CitedText, EntryNotes } from "@/components/Citations";
 import { entryHref, entryLocation, getEntry, getPublishedEntries } from "@/lib/archive";
+import { parseSources, stripNoteRefs } from "@/lib/citations";
 
 export const revalidate = 300;
 
@@ -17,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { track, id } = await params;
   const found = await getEntry(track, id);
   if (!found) return { title: "Not found" };
-  return { title: found.entry.title, description: found.entry.summary?.slice(0, 160) };
+  return { title: found.entry.title, description: found.entry.summary ? stripNoteRefs(found.entry.summary).slice(0, 160) : undefined };
 }
 
 export default async function CaseFilePage({ params }: Props) {
@@ -25,6 +27,11 @@ export default async function CaseFilePage({ params }: Props) {
   const found = await getEntry(track, id);
   if (!found) notFound();
   const { entry, related } = found;
+
+  const sources = entry.sourceText ? parseSources(entry.sourceText) : null;
+  const chicago = sources?.kind === "chicago" ? sources : null;
+  const noteNumbers = new Set(chicago?.notes.map((n) => n.n) ?? []);
+  const linked = new Set<number>();
 
   const mainLoc = entryLocation(entry);
   const points: MapPoint[] = [
@@ -76,15 +83,20 @@ export default async function CaseFilePage({ params }: Props) {
           {entry.summary && (
             <div>
               <h2 className="font-mono text-xs tracking-[0.3em] text-[#9fe3e0] uppercase">Summary</h2>
-              <p className="mt-4 text-lg leading-relaxed whitespace-pre-line">{entry.summary}</p>
+              <p className="mt-4 text-lg leading-relaxed whitespace-pre-line">
+                <CitedText text={entry.summary} noteNumbers={noteNumbers} linked={linked} />
+              </p>
             </div>
           )}
           {entry.body && (
             <div>
               <h2 className="font-mono text-xs tracking-[0.3em] text-[#9fe3e0] uppercase">{entry.bodyLabel}</h2>
-              <p className="mt-4 leading-relaxed whitespace-pre-line text-[#c5d0dc]">{entry.body}</p>
+              <p className="mt-4 leading-relaxed whitespace-pre-line text-[#c5d0dc]">
+                <CitedText text={entry.body} noteNumbers={noteNumbers} linked={linked} />
+              </p>
             </div>
           )}
+          {chicago && <EntryNotes notes={chicago.notes} bibliography={chicago.bibliography} />}
         </div>
         <aside className="space-y-8">
           {entry.mechanisms.length > 0 && (
@@ -107,7 +119,7 @@ export default async function CaseFilePage({ params }: Props) {
               ))}
             </dl>
           )}
-          {(entry.sourceUrls.length > 0 || entry.sourceText) && (
+          {(entry.sourceUrls.length > 0 || sources?.kind === "plain") && (
             <div>
               <h2 className="font-mono text-xs tracking-[0.3em] text-[#9fe3e0] uppercase">Sources</h2>
               <ul className="mt-4 space-y-2 break-words text-[#c5d0dc]">
@@ -115,7 +127,9 @@ export default async function CaseFilePage({ params }: Props) {
                   <li key={u}><a href={u} className="underline decoration-[#2c4468] underline-offset-4 hover:text-white" rel="noopener noreferrer" target="_blank">{u}</a></li>
                 ))}
               </ul>
-              {entry.sourceText && <p className="mt-3 text-sm leading-relaxed whitespace-pre-line text-[#c5d0dc]">{entry.sourceText}</p>}
+              {sources?.kind === "plain" && (
+                <p className="mt-3 text-sm leading-relaxed whitespace-pre-line text-[#c5d0dc]">{sources.text}</p>
+              )}
             </div>
           )}
         </aside>
