@@ -66,6 +66,7 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const maxAltitude = useRef(VIEW_ALTITUDE);
+  const [ready, setReady] = useState(false);
 
   const material = useMemo(
     () => new MeshBasicMaterial({ color: "#e8f3f4", transparent: true, opacity: 0.9 }),
@@ -84,9 +85,22 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
 
   // Scroll wheel: while the globe fills the screen, scrolling zooms it. When the zoom reaches its
   // limit (in or out), the scroll goes back to the page, so visitors can carry on to the footer.
+  // The zoom eases towards its target over a few frames instead of jumping on every wheel event.
+  const targetAltitude = useRef<number | null>(null);
   useEffect(() => {
     const el = scrollArea?.current ?? wrapRef.current;
     if (!el) return;
+    let frame = 0;
+    const ease = () => {
+      const g = globeRef.current;
+      const target = targetAltitude.current;
+      if (!g || target === null) return;
+      const pov = g.pointOfView();
+      const altitude = pov.altitude + (target - pov.altitude) * 0.25;
+      g.pointOfView({ ...pov, altitude }, 0);
+      if (Math.abs(target - altitude) > 0.002) frame = requestAnimationFrame(ease);
+      else targetAltitude.current = null;
+    };
     const onWheel = (e: WheelEvent) => {
       const g = globeRef.current;
       if (!g || e.ctrlKey) return; // ctrl + wheel is the browser's own zoom
@@ -94,26 +108,42 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
       const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
       if (visible / rect.height < 0.85) return; // globe not filling the screen: just scroll the page
 
-      const pov = g.pointOfView();
+      const current = targetAltitude.current ?? g.pointOfView().altitude;
       const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
       const zoomingIn = delta > 0;
       const atLimit = zoomingIn
-        ? pov.altitude <= MIN_ALTITUDE + 0.005
-        : pov.altitude >= maxAltitude.current - 0.005;
+        ? current <= MIN_ALTITUDE + 0.005
+        : current >= maxAltitude.current - 0.005;
       if (atLimit) return; // let the page scroll
 
       e.preventDefault();
-      // Line the globe up with the top of the screen while zooming.
-      if (Math.abs(rect.top) > 2) window.scrollBy({ top: rect.top, behavior: "instant" as ScrollBehavior });
-      const altitude = Math.min(
+      targetAltitude.current = Math.min(
         maxAltitude.current,
-        Math.max(MIN_ALTITUDE, pov.altitude * Math.exp(-delta * 0.0015)),
+        Math.max(MIN_ALTITUDE, current * Math.exp(-delta * 0.0015)),
       );
-      g.pointOfView({ ...pov, altitude }, 0);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(ease);
     };
     el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      cancelAnimationFrame(frame);
+    };
   }, [scrollArea]);
+
+  // Stop drawing the globe while it is scrolled out of view, so the rest of the page scrolls smoothly.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => {
+      const g = globeRef.current;
+      if (!g) return;
+      if (e.isIntersecting) g.resumeAnimation();
+      else g.pauseAnimation();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const onReady = (tries = 0) => {
     const g = globeRef.current;
@@ -126,6 +156,9 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
     const altitude = size.w < size.h ? VIEW_ALTITUDE_PHONE : VIEW_ALTITUDE;
     maxAltitude.current = altitude;
     g.pointOfView({ lat: VIEW_LAT, lng: VIEW_LNG, altitude }, 0);
+    // Retina screens would draw the full-screen globe at 4x the pixels; 1.5x looks the same and is far lighter.
+    g.renderer().setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    setReady(true);
 
     const controls = g.controls();
     controls.autoRotate = false; // true makes the globe spin slowly on its own
@@ -158,44 +191,53 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
 
   return (
     <div ref={wrapRef} className="relative h-full w-full">
+      {/* Soft placeholder shown while the globe loads; the globe fades in over it. */}
+      <div
+        aria-hidden
+        className={`absolute top-1/2 left-1/2 aspect-square h-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_45%_40%,#eef6f7,#dcecee_70%,#cfe5e7)] shadow-[0_0_80px_30px_rgba(127,211,207,0.25)] transition-opacity duration-700 ${
+          ready ? "opacity-0" : "animate-pulse"
+        }`}
+      />
       {size.w > 0 && (
-        <Globe
-          globeRef={globeRef}
-          width={size.w}
-          height={size.h}
-          backgroundColor="rgba(0,0,0,0)"
-          globeMaterial={material}
-          showAtmosphere
-          atmosphereColor="#7fd3cf"
-          atmosphereAltitude={0.25}
-          hexPolygonsData={land}
-          hexPolygonResolution={4} //finer dots
-          hexPolygonMargin={0.4} // gap around each dot
-          hexPolygonUseDots //dot color and transparency
-          hexPolygonColor={() => "rgb(159, 218, 212)"}
-          pointsData={points}
-          pointLat="lat"
-          pointLng="lng"
-          pointColor={() => "#ec20fd"} //color of published entry markers
-          pointAltitude={0.02}
-          pointRadius={0.77}
-          pointsMerge={false}
-          pointLabel={(d: object) => {
-            const p = d as GlobePoint;
-            return `<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;background:#0e1b2c;color:#fff;padding:6px 9px">${escapeHtml(p.label.toUpperCase())}<br><span style="color:#7fd3cf">${escapeHtml(p.sublabel)}</span></div>`;
-          }}
-          onPointClick={(d: object) => router.push((d as GlobePoint).href)}
-          // Ripple around the pin a track button spun to, like a location ping on a map.
-          ringsData={pulse ? [pulse] : []}
-          ringLat="lat"
-          ringLng="lng"
-          ringColor={() => (t: number) => `rgba(236,32,253,${1 - t})`}
-          ringMaxRadius={4}
-          ringPropagationSpeed={2.5}
-          ringRepeatPeriod={1100}
-          ringAltitude={0.021}
-          onGlobeReady={() => onReady()}
-        />
+        <div className={`h-full w-full transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>
+          <Globe
+            globeRef={globeRef}
+            width={size.w}
+            height={size.h}
+            backgroundColor="rgba(0,0,0,0)"
+            globeMaterial={material}
+            showAtmosphere
+            atmosphereColor="#7fd3cf"
+            atmosphereAltitude={0.25}
+            hexPolygonsData={land}
+            hexPolygonResolution={3} // dot density: 3 loads fast; 4 is finer but has ~7x the dots and loads slowly
+            hexPolygonMargin={0.3} // gap around each dot
+            hexPolygonUseDots //dot color and transparency
+            hexPolygonColor={() => "rgb(159, 218, 212)"}
+            pointsData={points}
+            pointLat="lat"
+            pointLng="lng"
+            pointColor={() => "#ec20fd"} //color of published entry markers
+            pointAltitude={0.02}
+            pointRadius={0.77}
+            pointsMerge={false}
+            pointLabel={(d: object) => {
+              const p = d as GlobePoint;
+              return `<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;background:#0e1b2c;color:#fff;padding:6px 9px">${escapeHtml(p.label.toUpperCase())}<br><span style="color:#7fd3cf">${escapeHtml(p.sublabel)}</span></div>`;
+            }}
+            onPointClick={(d: object) => router.push((d as GlobePoint).href)}
+            // Ripple around the pin a track button spun to, like a location ping on a map.
+            ringsData={pulse ? [pulse] : []}
+            ringLat="lat"
+            ringLng="lng"
+            ringColor={() => (t: number) => `rgba(236,32,253,${1 - t})`}
+            ringMaxRadius={4}
+            ringPropagationSpeed={2.5}
+            ringRepeatPeriod={1100}
+            ringAltitude={0.021}
+            onGlobeReady={() => onReady()}
+          />
+        </div>
       )}
     </div>
   );

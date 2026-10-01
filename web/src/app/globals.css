@@ -53,10 +53,9 @@ p {
   mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
 }
 
-/* ...and soften the outer ring out of focus, with a few drifting patches of haze. */
+/* ...and a few drifting patches of haze around the outer ring. (No blur filter here: blurring
+   the live 3D globe on every frame made scrolling stutter.) */
 .globe-haze {
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, transparent 60%, #000 95%);
   mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, transparent 60%, #000 95%);
   background:
