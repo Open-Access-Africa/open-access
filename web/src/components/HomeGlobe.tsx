@@ -62,9 +62,9 @@ export function HomeGlobe({ points }: { points: GlobePoint[] }) {
           globeMaterial={material}
           showAtmosphere
           atmosphereColor="#7fd3cf"
-          atmosphereAltitude={0.14}
+          atmosphereAltitude={0.25}
           hexPolygonsData={land}
-          hexPolygonResolution={5} //finer dots
+          hexPolygonResolution={4} //finer dots
           hexPolygonMargin={0.4} // gap around each dot
           hexPolygonUseDots //dot color and transparency
           hexPolygonColor={() => "rgb(159, 218, 212)"}
