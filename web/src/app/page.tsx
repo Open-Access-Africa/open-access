@@ -29,9 +29,6 @@ export default async function Home() {
     <>
       {/* Title area */}
       <section className="mx-auto flex max-w-7xl flex-col items-center gap-7 px-5 pb-14 pt-16 text-center sm:px-8 sm:pt-20 lg:px-14">
-        <p className="font-mono text-xs tracking-[0.3em] text-gold-deep uppercase sm:text-sm">
-          Archive / Colonial Law / Reparations
-        </p>
         {/* remove Main Heading
         <h1 className="font-display text-5xl leading-none font-extrabold tracking-tight sm:text-7xl lg:text-[80px]">
           <span className="block">Counter mapping strategies</span>
