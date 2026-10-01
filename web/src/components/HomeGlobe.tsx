@@ -3,12 +3,22 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
-import { MeshBasicMaterial, TOUCH } from "three";
+import {
+  CanvasTexture,
+  Group,
+  Mesh,
+  MeshBasicMaterial,
+  SphereGeometry,
+  Sprite,
+  SpriteMaterial,
+  TOUCH,
+  type Object3D,
+} from "three";
 import { feature } from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import countries110m from "world-atlas/countries-110m.json";
 import type { GlobeMethods } from "react-globe.gl";
-import type { GlobePoint } from "@/lib/globe-points";
+import { MARKERS, isColonialLaw, isReparation, type GlobePoint } from "@/lib/globe-points";
 
 // three.js needs the browser, so the globe is never rendered on the server.
 const Globe = dynamic(() => import("@/components/GlobeCanvas"), { ssr: false });
@@ -29,6 +39,38 @@ const land = feature(topology, topology.objects.countries).features
 
 function escapeHtml(s: string) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+}
+
+function pinLabel(p: GlobePoint) {
+  return `<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;background:#0e1b2c;color:#fff;padding:6px 9px">${escapeHtml(p.label.toUpperCase())}<br><span style="color:#7fd3cf">${escapeHtml(p.sublabel)}</span></div>`;
+}
+
+// Marker sizes. Globe radius is 100 units; point radii are in degrees.
+const REPARATION_RADIUS = 0.75; // green circle
+const LAW_CORE_RADIUS = 0.42; // yellow pin, in globe units (about half the green circle)
+const LAW_GLOW_SIZE = 3.4; // width of the glow around a yellow pin
+const LAW_GLOW_SIZE_FOCUSED = 5.6; // glow around the pin a track button spun to
+
+/** Soft round glow, drawn once and shared by every colonial-law pin. */
+function makeGlowTexture() {
+  const size = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  g.addColorStop(0, `rgba(${MARKERS.colonialLaw.glow},0.95)`);
+  g.addColorStop(0.35, `rgba(${MARKERS.colonialLaw.glow},0.45)`);
+  g.addColorStop(1, `rgba(${MARKERS.colonialLaw.glow},0)`);
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  return new CanvasTexture(canvas);
+}
+
+/** Small stagger so the reparation pings do not all pulse in step. */
+function pingPeriod(p: GlobePoint) {
+  let h = 0;
+  for (const c of p.label) h = (h * 31 + c.charCodeAt(0)) % 997;
+  return 1500 + (h % 600);
 }
 
 // Opening view of the globe. Lower VIEW_ALTITUDE to zoom in, raise it to zoom out.
@@ -53,7 +95,7 @@ export type GlobeApi = {
 
 type Props = {
   points: GlobePoint[];
-  /** The pin to mark with a ripple, if any. */
+  /** The pin a track button spun to, if any: a reparation pin pings wider, a law pin glows brighter. */
   pulse?: GlobePoint | null;
   onApi?: (api: GlobeApi) => void;
   /** Area whose scroll-wheel events zoom the globe (defaults to the globe itself). */
@@ -72,6 +114,31 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
     () => new MeshBasicMaterial({ color: "#e8f3f4", transparent: true, opacity: 0.9 }),
     [],
   );
+
+  // Reparations Cases and the other modern tracks are drawn as points; Colonial Laws as glowing pins.
+  const flatPoints = useMemo(() => points.filter((p) => !isColonialLaw(p)), [points]);
+  const lawPins = useMemo(() => points.filter(isColonialLaw), [points]);
+  const pings = useMemo(() => points.filter(isReparation), [points]);
+
+  // Shared three.js parts for the colonial-law pins. Built in the browser only (the canvas needs `document`).
+  const lawParts = useRef<{ core: SphereGeometry; coreMaterial: MeshBasicMaterial; glow: SpriteMaterial } | null>(null);
+  const lawObject = (d: object): Object3D => {
+    if (!lawParts.current) {
+      lawParts.current = {
+        core: new SphereGeometry(LAW_CORE_RADIUS, 16, 12),
+        coreMaterial: new MeshBasicMaterial({ color: MARKERS.colonialLaw.color }),
+        glow: new SpriteMaterial({ map: makeGlowTexture(), transparent: true, depthWrite: false }),
+      };
+    }
+    const { core, coreMaterial, glow } = lawParts.current;
+    const group = new Group();
+    const halo = new Sprite(glow);
+    const size = d === pulse ? LAW_GLOW_SIZE_FOCUSED : LAW_GLOW_SIZE;
+    halo.scale.set(size, size, 1);
+    group.add(halo);
+    group.add(new Mesh(core, coreMaterial));
+    return group;
+  };
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -214,27 +281,34 @@ export function HomeGlobe({ points, pulse, onApi, scrollArea }: Props) {
             hexPolygonMargin={0.3} // gap around each dot
             hexPolygonUseDots //dot color and transparency
             hexPolygonColor={() => "rgb(159, 218, 212)"}
-            pointsData={points}
+            // Reparations Cases: flat green circles. Other modern tracks keep the magenta marker for now.
+            pointsData={flatPoints}
             pointLat="lat"
             pointLng="lng"
-            pointColor={() => "#ec20fd"} //color of published entry markers
-            pointAltitude={0.02}
-            pointRadius={0.77}
+            pointColor={(d: object) => (isReparation(d as GlobePoint) ? MARKERS.reparation.color : MARKERS.other.color)}
+            pointAltitude={0.004}
+            pointRadius={REPARATION_RADIUS}
+            pointResolution={32}
             pointsMerge={false}
-            pointLabel={(d: object) => {
-              const p = d as GlobePoint;
-              return `<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;background:#0e1b2c;color:#fff;padding:6px 9px">${escapeHtml(p.label.toUpperCase())}<br><span style="color:#7fd3cf">${escapeHtml(p.sublabel)}</span></div>`;
-            }}
+            pointLabel={(d: object) => pinLabel(d as GlobePoint)}
             onPointClick={(d: object) => router.push((d as GlobePoint).href)}
-            // Ripple around the pin a track button spun to, like a location ping on a map.
-            ringsData={pulse ? [pulse] : []}
+            // Colonial Laws: smaller yellow pins with a soft, steady glow.
+            objectsData={lawPins}
+            objectLat="lat"
+            objectLng="lng"
+            objectAltitude={0.005}
+            objectThreeObject={lawObject}
+            objectLabel={(d: object) => pinLabel(d as GlobePoint)}
+            onObjectClick={(d: object) => router.push((d as GlobePoint).href)}
+            // Only Reparations Cases ping. The pin a track button spun to pings wider.
+            ringsData={pings}
             ringLat="lat"
             ringLng="lng"
-            ringColor={() => (t: number) => `rgba(236,32,253,${1 - t})`}
-            ringMaxRadius={4}
-            ringPropagationSpeed={2.5}
-            ringRepeatPeriod={1100}
-            ringAltitude={0.021}
+            ringColor={() => (t: number) => `rgba(${MARKERS.reparation.ping},${0.9 * (1 - t)})`}
+            ringMaxRadius={(d: object) => (d === pulse ? 4.5 : 2.6)}
+            ringPropagationSpeed={2}
+            ringRepeatPeriod={(d: object) => pingPeriod(d as GlobePoint)}
+            ringAltitude={0.005}
             onGlobeReady={() => onReady()}
           />
         </div>
