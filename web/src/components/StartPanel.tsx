@@ -28,7 +28,7 @@ export function StartPanel({ tracks, open, onOpen, onClose, onPick }: Props) {
       <button
         type="button"
         onClick={onOpen}
-        className="absolute bottom-12 left-1/2 z-10 -translate-x-1/2 rounded-full border border-line bg-white/95 px-5 py-2.5 font-mono text-xs tracking-[0.2em] text-ink uppercase shadow-[0_8px_24px_rgba(14,27,44,0.12)] hover:border-ink"
+        className="absolute bottom-24 left-1/2 z-10 -translate-x-1/2 rounded-full border border-line bg-white/95 px-5 py-2.5 font-mono text-xs tracking-[0.2em] text-ink uppercase shadow-[0_8px_24px_rgba(14,27,44,0.12)] hover:border-ink"
       >
         Where would you like to start?
       </button>
