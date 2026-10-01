@@ -87,7 +87,7 @@ export const building = [
   {
     name: "The Archive",
     status: "In progress",
-    text: "A free, searchable public archive of all four tracks, with timeline and map views and export to CSV and PDF.",
+    text: "A searchable public archive of all four tracks, with timeline and map views and export to CSV and PDF.",
   },
   {
     name: "The Volunteer Portal",
