@@ -40,7 +40,7 @@ export const trackPrompts = [
   { track: "Modern Laws & Policies", slug: "modern-laws", tint: "bg-[#fde9ff] border-[#f9bcfe]" },
 ];
 
-// "Law & Record" section on the home page: one colonial law and the records that followed it.
+// "Trace the Law" section on the home page: one colonial law and the records that followed it.
 // Label colours are darker shades of each track's globe marker, dark enough to read as small
 // text (about 5:1 contrast on white): Colonial Laws #856a00, Reparations Cases #187c43,
 // Modern Cases #076eca, Modern Laws and Policies #bf02cf.

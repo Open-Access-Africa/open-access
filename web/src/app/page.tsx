@@ -62,7 +62,7 @@ export default async function Home() {
         />
       </section>
 
-      {/* Law & Record */}
+      {/* Trace the Law */}
       <section aria-labelledby="record-heading" className="border-t border-line bg-white">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-14 lg:py-20">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -71,12 +71,11 @@ export default async function Home() {
                 Case file · South Africa
               </p>
               <h2 id="record-heading" className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-                Law &amp; Record
+                Trace the Law
               </h2>
             </div>
             <p className="max-w-md leading-relaxed text-muted">
-              Every entry links forward and back: from the law that caused a harm, to the claims and
-              remedies that followed.
+              Entries link from the law to later cases.
             </p>
           </div>
           <ol className="mt-10 grid gap-6 md:grid-cols-3">
