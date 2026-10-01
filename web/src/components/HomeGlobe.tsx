@@ -64,8 +64,8 @@ export function HomeGlobe({ points }: { points: GlobePoint[] }) {
           atmosphereColor="#7fd3cf"
           atmosphereAltitude={0.14}
           hexPolygonsData={land}
-          hexPolygonResolution={9} //finer dots
-          hexPolygonMargin={0.9} // gap around each dot
+          hexPolygonResolution={5} //finer dots
+          hexPolygonMargin={0.4} // gap around each dot
           hexPolygonUseDots //dot color and transparency
           hexPolygonColor={() => "rgb(159, 218, 212)"}
           pointsData={points}

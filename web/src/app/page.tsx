@@ -79,8 +79,6 @@ export default async function Home() {
                   >
                     <span>
                       <strong className="font-semibold">{p.track}</strong>
-                      <br />
-                      {p.prompt}
                     </span>
                     <span aria-hidden>↗</span>
                   </Link>

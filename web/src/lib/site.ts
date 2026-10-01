@@ -30,10 +30,10 @@ export const tracks = [
 
 // Starting points shown beside the globe on the home page.
 export const trackPrompts = [
-  { track: "Colonial Laws", {/* prompt: "Which laws took land in Southern Africa?", */} tint: "bg-[#f1f4e3] border-[#dce3be]" },
-  { track: "Reparations Cases", {/* prompt: "Where has redress been paid or refused?", */} tint: "bg-[#f9e3ea] border-[#eec5d2]" },
-  { track: "Modern Cases", {/*prompt: "Which harms are happening today?", */} tint: "bg-[#e7edfb] border-[#c9d5f2]" },
-  { track: "Modern Laws & Policies", {/*prompt: "Which laws demand redress now?", */} tint: "bg-[#fbf3df] border-[#eeddb2]" },
+  { track: "Colonial Laws", tint: "bg-[#f1f4e3] border-[#dce3be]" },
+  { track: "Reparations Cases", tint: "bg-[#f9e3ea] border-[#eec5d2]" },
+  { track: "Modern Cases", tint: "bg-[#e7edfb] border-[#c9d5f2]" },
+  { track: "Modern Laws & Policies", tint: "bg-[#fbf3df] border-[#eeddb2]" },
 ];
 
 // "Law & Record" section on the home page: one colonial law and the records that followed it.
