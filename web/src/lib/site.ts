@@ -41,6 +41,9 @@ export const trackPrompts = [
 ];
 
 // "Law & Record" section on the home page: one colonial law and the records that followed it.
+// Label colours are darker shades of each track's globe marker, dark enough to read as small
+// text (about 5:1 contrast on white): Colonial Laws #856a00, Reparations Cases #187c43,
+// Modern Cases #076eca, Modern Laws and Policies #bf02cf.
 export const lawAndRecord = [
   {
     kind: "Colonial Law",
@@ -48,7 +51,7 @@ export const lawAndRecord = [
     title: "Natives Land Act",
     text: "Restricted Black South Africans to owning land in reserves covering about 7% of the country.",
     footer: "Land seizure · Racial classification",
-    color: "text-[#156e72]",
+    color: "text-[#856a00]",
   },
   {
     kind: "Reparations Case",
@@ -56,7 +59,7 @@ export const lawAndRecord = [
     title: "Restitution of Land Rights Act",
     text: "Opened land claims for people dispossessed after 19 June 1913, the day the Natives Land Act took effect.",
     footer: "Legislation · Land return",
-    color: "text-[#a0405e]",
+    color: "text-[#187c43]",
   },
   {
     kind: "Modern Law",
@@ -64,7 +67,7 @@ export const lawAndRecord = [
     title: "Constitution, Section 25",
     text: "The property clause that commits the state to land reform and equitable access to land.",
     footer: "Demands redress · In force",
-    color: "text-[#3456a8]",
+    color: "text-[#bf02cf]",
   },
 ];
 
