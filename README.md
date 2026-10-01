@@ -1,6 +1,6 @@
 # Open Access – Africa
 
-**Open Access** is a public archive of colonial laws and the later cases, settlements and laws connected to them. Volunteers research and document four connected tracks:
+**Open Access** is a public archive of colonial laws and the later cases, settlements and policies connected to them. Volunteers research and document four connected tracks:
 
 | Track                        | What it documents                                                                                         |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------- |
