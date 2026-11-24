@@ -1,0 +1,146 @@
+{
+  "track": "Colonial Laws",
+  "airtableTable": "Colonial Laws",
+  "stagingTable": "Staging – Colonial Laws",
+  "titleField": "Law Name",
+  "fields": {
+    "Law Name": {
+      "required": true,
+      "type": "text"
+    },
+    "Year Enacted": {
+      "required": true,
+      "type": "year"
+    },
+    "Colonial Power": {
+      "required": true,
+      "type": "choice",
+      "choices": [
+        "Britain",
+        "British Empire",
+        "France",
+        "Portugal",
+        "Spain",
+        "Netherlands",
+        "Belgium",
+        "Germany",
+        "Italy",
+        "United States",
+        "Ottoman Empire",
+        "Japan",
+        "Other"
+      ]
+    },
+    "Colony / Territory": {
+      "required": true,
+      "type": "text"
+    },
+    "Target Community": {
+      "required": true,
+      "type": "text"
+    },
+    "Instrument Type": {
+      "required": true,
+      "type": "choice",
+      "choices": [
+        "Act",
+        "Ordinance",
+        "Proclamation",
+        "Decree",
+        "Treaty or agreement",
+        "Regulation",
+        "Other"
+      ]
+    },
+    "Mechanism": {
+      "required": true,
+      "type": "multi",
+      "choices": [
+        "Taxation",
+        "Land seizure or dispossession",
+        "Forced or coerced labour",
+        "Labour exploitation",
+        "Resource extraction or control",
+        "Exclusion from education or skills",
+        "Racial classification",
+        "Segregation or restricted movement",
+        "Family separation or child removal",
+        "Cultural or language suppression",
+        "Political disenfranchisement",
+        "State violence or policing",
+        "Environmental destruction",
+        "Harmful product or platform design",
+        "Surveillance or data exploitation",
+        "Trade monopoly",
+        "Other"
+      ]
+    },
+    "Other Description": {
+      "required": false,
+      "type": "text",
+      "note": "Explain the mechanism when Mechanism includes Other"
+    },
+    "Summary": {
+      "required": true,
+      "type": "longtext",
+      "sentences": [
+        2,
+        3
+      ],
+      "notes": true
+    },
+    "Analysis": {
+      "required": true,
+      "type": "longtext",
+      "minWords": 200,
+      "notes": true
+    },
+    "Source 1": {
+      "required": true,
+      "type": "url"
+    },
+    "Source 2": {
+      "required": true,
+      "type": "url"
+    },
+    "Source 3": {
+      "required": false,
+      "type": "url"
+    },
+    "Source Text": {
+      "required": true,
+      "type": "chicago"
+    },
+    "Country or Region": {
+      "required": false,
+      "type": "text"
+    },
+    "Estimated Value Extracted": {
+      "required": false,
+      "type": "text"
+    },
+    "Country Code": {
+      "required": true,
+      "type": "countryCodes"
+    },
+    "Latitude": {
+      "required": false,
+      "type": "lat"
+    },
+    "Longitude": {
+      "required": false,
+      "type": "lng"
+    }
+  },
+  "noteFieldsInOrder": [
+    "Summary",
+    "Analysis"
+  ],
+  "draftMeta": {
+    "Source Lead": "Airtable record id of the Research Lead (rec...)",
+    "Sources": "[{ url, tier: 1|2|3, kind, snapshot }] one per bibliography entry",
+    "Quotes": "[{ text, url }] every quoted passage, for word-for-word checking",
+    "Draft Flags": "Anything the agent could not verify, for the reviewer"
+  },
+  "_note": "Choice lists copied from the Submit Colonial Law form on 2026-11-24. Update them if the Airtable select options change."
+}
