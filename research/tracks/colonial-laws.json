@@ -136,11 +136,79 @@
     "Summary",
     "Analysis"
   ],
-  "draftMeta": {
-    "Source Lead": "Airtable record id of the Research Lead (rec...)",
-    "Sources": "[{ url, tier: 1|2|3, kind, snapshot }] one per bibliography entry",
-    "Quotes": "[{ text, url }] every quoted passage, for word-for-word checking",
-    "Draft Flags": "Anything the agent could not verify, for the reviewer"
-  },
-  "_note": "Choice lists copied from the Submit Colonial Law form on 2026-11-24. Update them if the Airtable select options change."
+  "_note": "Choice lists copied from the Submit Colonial Law form on 2026-11-24. Update them if the Airtable select options change. Staging – Colonial Laws mirrors Colonial Laws (types and help text) plus stagingFields.",
+  "stagingFields": {
+    "Source Lead": {
+      "type": "link",
+      "table": "Research Leads",
+      "note": "Link to the lead the draft came from (the draft JSON holds its rec id)"
+    },
+    "Review Status": {
+      "type": "choice",
+      "choices": [
+        "Needs review",
+        "In review",
+        "Approved",
+        "Changes needed",
+        "Rejected"
+      ],
+      "set": "Needs review"
+    },
+    "Submitted Via": {
+      "type": "choice",
+      "choices": [
+        "Airtable form",
+        "Website form",
+        "Claude skill (research-lead)"
+      ],
+      "set": "Claude skill (research-lead)"
+    },
+    "Drafted By": {
+      "type": "text",
+      "set": "Claude (research-lead), with the date"
+    },
+    "Sources": {
+      "type": "longtext",
+      "note": "[{ url, tier: 1|2|3, kind, snapshot }] one per bibliography entry, written as text"
+    },
+    "Quotes": {
+      "type": "longtext",
+      "note": "[{ text, url }] every quoted passage, for word-for-word checking, written as text"
+    },
+    "Draft Flags": {
+      "type": "longtext",
+      "note": "Anything the agent could not verify, for the reviewer"
+    },
+    "Enter email": {
+      "type": "email",
+      "set": "leave empty"
+    },
+    "Submitted By": {
+      "type": "link",
+      "table": "Volunteers",
+      "set": "leave empty"
+    },
+    "Verified By": {
+      "type": "link",
+      "table": "Volunteers",
+      "set": "leave empty; filled from Lead Under Review By when an approved draft is copied into Colonial Laws"
+    },
+    "Lead Under Review By": {
+      "type": "link",
+      "table": "Volunteers",
+      "set": "leave empty; filled when a reviewer claims the draft"
+    },
+    "Reviewer Email": {
+      "type": "email",
+      "set": "leave empty"
+    },
+    "Review Claimed On": {
+      "type": "date",
+      "set": "leave empty"
+    },
+    "Reviewer Not Matched": {
+      "type": "checkbox",
+      "set": "leave empty"
+    }
+  }
 }

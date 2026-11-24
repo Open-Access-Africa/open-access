@@ -65,7 +65,8 @@ Every entry needs at least one Tier 1 source. If none can be found online, stop 
 
 ## Human review (unchanged, plus one rule)
 
-Drafts written by Claude go to a staging table, never to the research tables directly. A person
-moves a draft into the research table only after opening **every** cited source and confirming each
-numbered claim, then follows the normal QA checklist in the README. Automation never sets Task Status,
-Verified By or Published.
+Drafts written by Claude go to Staging – Colonial Laws, never to the research tables directly. A QA
+reviewer claims the draft with their signup email, opens **every** cited source and confirms each
+numbered claim, then follows the normal QA checklist in the README. Only an approved draft is copied into
+the research table, with the reviewer as Verified By. Automation never sets Task Status, Verified By or
+Published. The full workflow is in `research/README.md`.

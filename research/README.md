@@ -1,22 +1,62 @@
 # Research automation
 
-Tools for having Claude Code draft archive entries from Research Leads. Drafts go to a staging
-table in Airtable and are reviewed by a person before anything reaches the research tables.
+Tools for having Claude Code draft archive entries from Research Leads. Drafts go to a staging table
+in Airtable, a QA reviewer claims and checks each one, and only an approved draft is copied into the
+research table.
 
 | File | What it is |
 |---|---|
 | `STANDARDS.md` | The research standard: fields, source tiers, writing and citation rules |
-| `tracks/colonial-laws.json` | Fields and select options for the Colonial Laws track |
+| `tracks/colonial-laws.json` | Fields and select options for Colonial Laws, plus the staging-only fields |
 | `validate.mjs` | Checks a draft against the standard (no dependencies) |
 | `../.claude/skills/research-lead/SKILL.md` | The Claude Code skill that researches one lead |
 
-## Run it
+## Airtable tables
 
-1. In Airtable, tick **Auto OK** on the lead (Lead Status must be Open).
-2. In Claude Code, from the repository root: `/research-lead <lead name or rec id>`.
-3. Check a draft by hand at any time: `node research/validate.mjs path/to/draft.json`.
+| Table | Holds |
+|---|---|
+| **Staging – Colonial Laws** | Drafts waiting for review. Same fields, types and help text as Colonial Laws, plus the staging fields below |
+| **Staging – Research Leads** | Leads suggested through the lead form, waiting for review. Same fields as Research Leads, plus Enter email, Email Not Matched, Submitted By, Submitted Via and Review Status |
 
-Drafts are data, so they are saved outside this repository and loaded into the staging table.
+Staging fields:
+
+| Field | Use |
+|---|---|
+| Review Status | Needs review → In review → Approved, Changes needed or Rejected |
+| Submitted Via | Airtable form, Website form, or Claude skill (research-lead) |
+| Drafted By | Who or what wrote a Claude draft, with the date |
+| Sources, Quotes, Draft Flags | What the draft is based on and what the reviewer must check (Claude drafts) |
+| Lead Under Review By | Link to the QA reviewer who claimed the record |
+| Reviewer Email | The reviewer types their signup email here to claim the record |
+| Review Claimed On | Date the record was claimed |
+| Reviewer Not Matched | Ticked when the reviewer email matches no Active QA reviewer |
+
+Claude drafts have no signup email, so **Enter email** and **Submitted By** stay empty and
+**Submitted Via** shows where the record came from.
+
+## Workflow for a Claude draft
+
+1. **Mark the lead.** An admin ticks **Auto OK** on a Research Lead whose Lead Status is Open.
+2. **Draft.** In Claude Code, from the repository root: `/research-lead <lead name or rec id>`.
+   Claude researches the lead, validates the draft and creates a record in Staging – Colonial Laws with
+   Review Status **Needs review** and Submitted Via **Claude skill (research-lead)**.
+3. **Claim.** A QA reviewer enters their signup email in **Reviewer Email**. An Airtable automation matches
+   it to an Active volunteer with the QA reviewer role, fills **Lead Under Review By** and **Review Claimed On**,
+   and sets Review Status to **In review**. If nobody matches, it ticks **Reviewer Not Matched** for an admin
+   to check.
+4. **Review.** The reviewer opens every cited source, confirms each numbered claim, works through Draft Flags
+   and the QA checklist in the main README, and edits the draft in staging.
+5. **Decide.** Set Review Status to **Approved**, **Changes needed** (with a record comment) or **Rejected**.
+6. **Copy into Colonial Laws** (approved drafts only). Create the Colonial Laws record from the staging record,
+   field for field. Set **Verified By** to the reviewer in Lead Under Review By, leave Submitted By empty, and set
+   Task Status to **Published**. Then, in Research Leads, set the lead's **Lead Status** to **Done** and link the
+   new record in **Resulting Colonial Law**, as for any published entry.
+
+Leads suggested through the form follow steps 3–5 in Staging – Research Leads; an approved lead is copied into
+Research Leads.
+
+Check a draft by hand at any time: `node research/validate.mjs path/to/draft.json`.
+Drafts are data, so they are kept in Airtable, not in this repository.
 
 ## What the validator checks
 

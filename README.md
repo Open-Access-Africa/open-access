@@ -284,7 +284,7 @@ In each research table, look for records where **Task Status** is **Submitted**.
 
 #### Reviewing drafts written by Claude
 
-Some leads marked **Auto OK** are drafted by Claude Code into a staging table instead of by a volunteer. Review these like any other entry, with one extra step: open **every** cited source and confirm each numbered claim before moving the draft into the research table. The draft's **Draft Flags** list what Claude could not verify. See [research/README.md](research/README.md).
+Some leads marked **Auto OK** are drafted by Claude Code into a staging table instead of by a volunteer. Claim one by entering your signup email in **Reviewer Email**, then review it like any other entry, with one extra step: open **every** cited source and confirm each numbered claim before moving the draft into the research table. The draft's **Draft Flags** list what Claude could not verify. See [research/README.md](research/README.md).
 
 #### Tips
 
