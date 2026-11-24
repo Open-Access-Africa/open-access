@@ -282,6 +282,10 @@ In each research table, look for records where **Task Status** is **Submitted**.
 - Where relevant, link related records, such as **Related Colonial Laws** on a case, or **Related Reparations Cases** on a law.
 - For apprenticeships, fill in **Verified Date**.
 
+#### Reviewing drafts written by Claude
+
+Some leads marked **Auto OK** are drafted by Claude Code into a staging table instead of by a volunteer. Claim one by entering your signup email in **Reviewer Email**, then review it like any other entry, with one extra step: open **every** cited source and confirm each numbered claim before moving the draft into the research table. The draft's **Draft Flags** list what Claude could not verify. See [research/README.md](research/README.md).
+
 #### Tips
 
 - **Don't review your own submissions.** Ask another reviewer.
@@ -513,6 +517,7 @@ Developers build the Open Access website: the public **Archive** and **Marketpla
 
 - Keep a `CLAUDE.md` in the repo root with the base ID, table names, the stack, and the rules above.
 - Connect Airtable to Claude Code so it can read the live schema.
+- To draft entries from leads with Claude Code, see [research/README.md](research/README.md). Drafts go to a staging table and are never published without a human reviewer.
 
 > [!CAUTION]
 > I cannot repeat this enough: **work in branches and open pull requests. Don't push straight to `main`.**

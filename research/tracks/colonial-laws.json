@@ -1,0 +1,214 @@
+{
+  "track": "Colonial Laws",
+  "airtableTable": "Colonial Laws",
+  "stagingTable": "Staging – Colonial Laws",
+  "titleField": "Law Name",
+  "fields": {
+    "Law Name": {
+      "required": true,
+      "type": "text"
+    },
+    "Year Enacted": {
+      "required": true,
+      "type": "year"
+    },
+    "Colonial Power": {
+      "required": true,
+      "type": "choice",
+      "choices": [
+        "Britain",
+        "British Empire",
+        "France",
+        "Portugal",
+        "Spain",
+        "Netherlands",
+        "Belgium",
+        "Germany",
+        "Italy",
+        "United States",
+        "Ottoman Empire",
+        "Japan",
+        "Other"
+      ]
+    },
+    "Colony / Territory": {
+      "required": true,
+      "type": "text"
+    },
+    "Target Community": {
+      "required": true,
+      "type": "text"
+    },
+    "Instrument Type": {
+      "required": true,
+      "type": "choice",
+      "choices": [
+        "Act",
+        "Ordinance",
+        "Proclamation",
+        "Decree",
+        "Treaty or agreement",
+        "Regulation",
+        "Other"
+      ]
+    },
+    "Mechanism": {
+      "required": true,
+      "type": "multi",
+      "choices": [
+        "Taxation",
+        "Land seizure or dispossession",
+        "Forced or coerced labour",
+        "Labour exploitation",
+        "Resource extraction or control",
+        "Exclusion from education or skills",
+        "Racial classification",
+        "Segregation or restricted movement",
+        "Family separation or child removal",
+        "Cultural or language suppression",
+        "Political disenfranchisement",
+        "State violence or policing",
+        "Environmental destruction",
+        "Harmful product or platform design",
+        "Surveillance or data exploitation",
+        "Trade monopoly",
+        "Other"
+      ]
+    },
+    "Other Description": {
+      "required": false,
+      "type": "text",
+      "note": "Explain the mechanism when Mechanism includes Other"
+    },
+    "Summary": {
+      "required": true,
+      "type": "longtext",
+      "sentences": [
+        2,
+        3
+      ],
+      "notes": true
+    },
+    "Analysis": {
+      "required": true,
+      "type": "longtext",
+      "minWords": 200,
+      "notes": true
+    },
+    "Source 1": {
+      "required": true,
+      "type": "url"
+    },
+    "Source 2": {
+      "required": true,
+      "type": "url"
+    },
+    "Source 3": {
+      "required": false,
+      "type": "url"
+    },
+    "Source Text": {
+      "required": true,
+      "type": "chicago"
+    },
+    "Country or Region": {
+      "required": false,
+      "type": "text"
+    },
+    "Estimated Value Extracted": {
+      "required": false,
+      "type": "text"
+    },
+    "Country Code": {
+      "required": true,
+      "type": "countryCodes"
+    },
+    "Latitude": {
+      "required": false,
+      "type": "lat"
+    },
+    "Longitude": {
+      "required": false,
+      "type": "lng"
+    }
+  },
+  "noteFieldsInOrder": [
+    "Summary",
+    "Analysis"
+  ],
+  "_note": "Choice lists copied from the Submit Colonial Law form on 2026-11-24. Update them if the Airtable select options change. Staging – Colonial Laws mirrors Colonial Laws (types and help text) plus stagingFields.",
+  "stagingFields": {
+    "Source Lead": {
+      "type": "link",
+      "table": "Research Leads",
+      "note": "Link to the lead the draft came from (the draft JSON holds its rec id)"
+    },
+    "Review Status": {
+      "type": "choice",
+      "choices": [
+        "Needs review",
+        "In review",
+        "Approved",
+        "Changes needed",
+        "Rejected"
+      ],
+      "set": "Needs review"
+    },
+    "Submitted Via": {
+      "type": "choice",
+      "choices": [
+        "Airtable form",
+        "Website form",
+        "Claude skill (research-lead)"
+      ],
+      "set": "Claude skill (research-lead)"
+    },
+    "Drafted By": {
+      "type": "text",
+      "set": "Claude (research-lead), with the date"
+    },
+    "Sources": {
+      "type": "longtext",
+      "note": "[{ url, tier: 1|2|3, kind, snapshot }] one per bibliography entry, written as text"
+    },
+    "Quotes": {
+      "type": "longtext",
+      "note": "[{ text, url }] every quoted passage, for word-for-word checking, written as text"
+    },
+    "Draft Flags": {
+      "type": "longtext",
+      "note": "Anything the agent could not verify, for the reviewer"
+    },
+    "Enter email": {
+      "type": "email",
+      "set": "leave empty"
+    },
+    "Submitted By": {
+      "type": "link",
+      "table": "Volunteers",
+      "set": "leave empty"
+    },
+    "Verified By": {
+      "type": "link",
+      "table": "Volunteers",
+      "set": "leave empty; filled from Lead Under Review By when an approved draft is copied into Colonial Laws"
+    },
+    "Lead Under Review By": {
+      "type": "link",
+      "table": "Volunteers",
+      "set": "leave empty; filled when a reviewer claims the draft"
+    },
+    "Reviewer Email": {
+      "type": "email",
+      "set": "leave empty"
+    },
+    "Review Claimed On": {
+      "type": "date",
+      "set": "leave empty"
+    },
+    "Reviewer Not Matched": {
+      "type": "checkbox",
+      "set": "leave empty"
+    }
+  }
+}
